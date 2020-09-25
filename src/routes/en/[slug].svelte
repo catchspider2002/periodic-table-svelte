@@ -103,7 +103,7 @@
           <span class="headerOutline text-upper heavyFont">{Lang.labelGeneralProp}</span>
           <div class="grid">
             <div class="new-table heavyFont">{Lang.labelAtmNoMain}</div>
-            <div class="new-table">{num + 1}</div>
+            <div class="new-table">{Constants[num].num}</div>
             <div class="new-table heavyFont">{Lang.labelAtmWtMain}</div>
             <div class="new-table">{Constants[num].aWt}</div>
             <div class="new-table heavyFont">{Lang.labelMassNum}</div>
@@ -172,9 +172,13 @@
         <div class="box-content masonry-col">
           <div class="grid">
             <div class="new-table heavyFont">{Lang.labelCrustMain}</div>
-            <div class="new-table">{Constants[num].crt}</div>
+            <div class="new-table">
+              {@html Constants[num].crt}
+            </div>
             <div class="new-table heavyFont">{Lang.labelUniverseMain}</div>
-            <div class="new-table">{Constants[num].uni}</div>
+            <div class="new-table">
+              {@html Constants[num].uni}
+            </div>
           </div>
         </div>
         <!-- Image -->
@@ -182,7 +186,7 @@
           <div class="blog-thumb"><img id="elementPic" src="images/placeholder.png" alt="" data-toggle="modal" data-target="#exampleModal" /></div>
           <div class="box-content bottom-rounded line-height-2">
             <span id="imgCredits" class="heavyFont" /><span id="imgCreditsLink" />
-            <div id="imgDesc">
+            <div>
               {@html post.desc}
             </div>
           </div>

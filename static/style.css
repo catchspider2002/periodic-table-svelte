@@ -167,6 +167,7 @@ body {
   -ms-transition: 0.1s opacity;
   background-color: var(--body-bg-color);
   color: rgb(var(--text-color));
+  font-family: 'Noto Sans', sans-serif;
 }
 
 body.fade-out {
