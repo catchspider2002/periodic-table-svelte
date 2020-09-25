@@ -70,64 +70,64 @@
         <div class="flex-container row">
           <div class="flex-cell">
             <div id="firstSquare" class="flex-item masonry-col flex flex-col">
-              <div id="resultNumber" class="flex line-height-normal" />
+              <div class="flex line-height-normal">{Constants[num].num}</div>
               <div id="resultSymbol" class="text-center flex content-center justify-center line-height-normal">
-                <span id="resultSymbolInner" class="self-center" />
+                <span class="self-center">{Constants[num].sym}</span>
               </div>
             </div>
           </div>
           <div class="flex-cell">
             <div id="secondSquare" class="flex-item masonry-col grid">
-              <div id="group" class="heavyFont">{Lang.group}</div>
-              <div id="outputGroup">{Constants[num].grp}</div>
-              <div id="period" class="heavyFont">{Lang.period}</div>
-              <div id="outputPeriod">{Constants[num].prd}</div>
-              <div id="block" class="heavyFont">{Lang.block}</div>
-              <div id="outputBlock">{Constants[num].blk}</div>
+              <div class="heavyFont">{Lang.group}</div>
+              <div>{Constants[num].grp}</div>
+              <div class="heavyFont">{Lang.period}</div>
+              <div>{Constants[num].prd}</div>
+              <div class="heavyFont">{Lang.block}</div>
+              <div>{Constants[num].blk}</div>
             </div>
           </div>
         </div>
         <!-- Protons, Electrons, Neutrons -->
         <div class="box-content masonry-col">
           <div class="grid-3">
-            <div id="protons" class="new-table text-center heavyFont truncate">{Lang.protons}</div>
-            <div id="electrons" class="new-table text-center heavyFont truncate">{Lang.electrons}</div>
-            <div id="neutrons" class="new-table text-center heavyFont truncate">{Lang.neutrons}</div>
-            <div id="outputProtons" class="text-center new-table font-size-1-5">{Constants[num].p}</div>
-            <div id="outputElectrons" class="text-center new-table font-size-1-5">{Constants[num].e}</div>
-            <div id="outputNeutrons" class="text-center new-table font-size-1-5">{Constants[num].n}</div>
+            <div class="new-table text-center heavyFont truncate">{Lang.protons}</div>
+            <div class="new-table text-center heavyFont truncate">{Lang.electrons}</div>
+            <div class="new-table text-center heavyFont truncate">{Lang.neutrons}</div>
+            <div class="text-center new-table font-size-1-5">{Constants[num].p}</div>
+            <div class="text-center new-table font-size-1-5">{Constants[num].e}</div>
+            <div class="text-center new-table font-size-1-5">{Constants[num].n}</div>
           </div>
         </div>
         <!-- General Prooperties -->
         <div class="box-content masonry-col">
-          <span id="labelGeneralProp" class="headerOutline text-upper heavyFont">{Lang.labelGeneralProp}</span>
+          <span class="headerOutline text-upper heavyFont">{Lang.labelGeneralProp}</span>
           <div class="grid">
-            <div id="labelAtmNoMain" class="new-table heavyFont">{Lang.labelAtmNoMain}</div>
-            <div id="outputAtmNoMain" class="new-table">{num + 1}</div>
-            <div id="labelAtmWtMain" class="new-table heavyFont">{Lang.labelAtmWtMain}</div>
-            <div id="outputAtmWtMain" class="new-table">{Constants[num].aWt}</div>
-            <div id="labelMassNum" class="new-table heavyFont">{Lang.labelMassNum}</div>
-            <div id="outputMassNum" class="new-table">{Constants[num].mNo}</div>
-            <div id="labelCategoryMain" class="new-table heavyFont">{Lang.labelCategoryMain}</div>
-            <div id="outputCategoryMain" class="new-table">{Constants[num].ctg}</div>
-            <div id="labelColorMain" class="new-table heavyFont">{Lang.labelColorMain}</div>
-            <div id="outputColorMain" class="new-table">{Constants[num].clr}</div>
-            <div id="labelRadioMain" class="new-table heavyFont">{Lang.labelRadioMain}</div>
-            <div id="outputRadioMain" class="new-table">{Constants[num].rdo}</div>
-            <div id="labelStructureMain" class="new-table heavyFont">{Lang.labelStructureMain}</div>
-            <div id="outputStructureMain" class="new-table">{Constants[num].stc}</div>
+            <div class="new-table heavyFont">{Lang.labelAtmNoMain}</div>
+            <div class="new-table">{num + 1}</div>
+            <div class="new-table heavyFont">{Lang.labelAtmWtMain}</div>
+            <div class="new-table">{Constants[num].aWt}</div>
+            <div class="new-table heavyFont">{Lang.labelMassNum}</div>
+            <div class="new-table">{Constants[num].mNo}</div>
+            <div class="new-table heavyFont">{Lang.labelCategoryMain}</div>
+            <div class="new-table">{Constants[num].ctg}</div>
+            <div class="new-table heavyFont">{Lang.labelColorMain}</div>
+            <div class="new-table">{Constants[num].clr}</div>
+            <div class="new-table heavyFont">{Lang.labelRadioMain}</div>
+            <div class="new-table">{Constants[num].rdo}</div>
+            <div class="new-table heavyFont">{Lang.labelStructureMain}</div>
+            <div class="new-table">{Constants[num].stc}</div>
           </div>
         </div>
         <!-- Name Reason -->
         <div class="box-content text-center masonry-col">
-          <div id="elementReasonMain" class="line-height-2">
+          <div class="line-height-2">
             {@html post.reason}
           </div>
         </div>
         <!-- History -->
         <div class="box-content masonry-col">
-          <span id="history" class="headerOutline text-upper heavyFont" />
-          <div id="elementHistoryMain" class="line-height-2">
+          <span class="headerOutline text-upper heavyFont">{Lang.hist}</span>
+          <div class="line-height-2">
             {@html post.history}
           </div>
         </div>
@@ -137,7 +137,9 @@
             <div class="new-table heavyFont">{Lang.labelElectronsMain}</div>
             <div class="new-table ltrText text-left">{Constants[num].elc}</div>
             <div class="new-table heavyFont hyphen">{Lang.labelConfigMain}</div>
-            <div class="new-table ltrText text-left">{Constants[num].cnf}</div>
+            <div class="new-table ltrText text-left">
+              {@html Constants[num].cnf}
+            </div>
           </div>
         </div>
         <!-- Facts -->
@@ -148,7 +150,7 @@
         </div>
         <!-- Physical Properties -->
         <div class="box-content masonry-col">
-          <span id="labelPhysicalProp" class="headerOutline text-upper heavyFont" />
+          <span class="headerOutline text-upper heavyFont">{Lang.labelPhysicalProp}</span>
           <div class="grid">
             <div class="new-table heavyFont">{Lang.labelPhaseMain}</div>
             <div class="new-table">{Constants[num].phs}</div>
@@ -169,10 +171,10 @@
         <!-- Abundance -->
         <div class="box-content masonry-col">
           <div class="grid">
-            <div class="new-table heavyFont" id="labelCrustMain" />
-            <div id="outputCrustMain" class="new-table">{Constants[num].crt}</div>
-            <div class="new-table heavyFont" id="labelUniverseMain" />
-            <div id="outputUniverseMain" class="new-table">{Constants[num].uni}</div>
+            <div class="new-table heavyFont">{Lang.labelCrustMain}</div>
+            <div class="new-table">{Constants[num].crt}</div>
+            <div class="new-table heavyFont">{Lang.labelUniverseMain}</div>
+            <div class="new-table">{Constants[num].uni}</div>
           </div>
         </div>
         <!-- Image -->
@@ -180,49 +182,51 @@
           <div class="blog-thumb"><img id="elementPic" src="images/placeholder.png" alt="" data-toggle="modal" data-target="#exampleModal" /></div>
           <div class="box-content bottom-rounded line-height-2">
             <span id="imgCredits" class="heavyFont" /><span id="imgCreditsLink" />
-            <div id="imgDesc" />
+            <div id="imgDesc">
+              {@html post.desc}
+            </div>
           </div>
         </div>
         <!-- Identifiers -->
         <div class="box-content masonry-col">
           <div class="grid">
-            <div class="new-table heavyFont" id="labelCASMain" />
-            <div id="outputCASMain" class="new-table">{Constants[num].cas}</div>
-            <div class="new-table heavyFont" id="labelCIDMain" />
-            <div id="outputCIDMain" class="new-table">{Constants[num].cid}</div>
+            <div class="new-table heavyFont">{Lang.labelCASMain}</div>
+            <div class="new-table">{Constants[num].cas}</div>
+            <div class="new-table heavyFont">{Lang.labelCIDMain}</div>
+            <div class="new-table">{Constants[num].cid}</div>
           </div>
         </div>
         <!-- Atomic Properties -->
         <div class="box-content masonry-col">
-          <span id="labelAtomicProp" class="headerOutline text-upper heavyFont" />
+          <span class="headerOutline text-upper heavyFont">{Lang.labelAtomicProp}</span>
           <div class="grid">
-            <div class="new-table heavyFont" id="labelRadiusMain" />
-            <div id="outputRadiusMain" class="new-table">{Constants[num].aRd}</div>
-            <div class="new-table heavyFont" id="labelCovalentMain" />
-            <div id="outputCovalentMain" class="new-table">{Constants[num].cRd}</div>
-            <div class="new-table heavyFont hyphen" id="labelElectronegativityMain" />
-            <div id="outputElectronegativityMain" class="new-table">{Constants[num].eNg}</div>
-            <div class="new-table heavyFont hyphen" id="labelIonizationMain" />
-            <div id="outputIonizationMain" class="new-table">{Constants[num].ion}</div>
-            <div class="new-table heavyFont" id="labelVolumeMain" />
-            <div id="outputVolumeMain" class="new-table">{Constants[num].vol}</div>
-            <div class="new-table heavyFont hyphen" id="labelThermalMain" />
-            <div id="outputThermalMain" class="new-table">{Constants[num].trm}</div>
-            <div class="new-table heavyFont hyphen" id="labelOxidationMain" />
-            <div id="outputOxidationMain" class="new-table ltrText text-left">{Constants[num].oxi}</div>
+            <div class="new-table heavyFont">{Lang.labelRadiusMain}</div>
+            <div class="new-table">{Constants[num].aRd}</div>
+            <div class="new-table heavyFont">{Lang.labelCovalentMain}</div>
+            <div class="new-table">{Constants[num].cRd}</div>
+            <div class="new-table heavyFont hyphen">{Lang.labelElectronegativityMain}</div>
+            <div class="new-table">{Constants[num].eNg}</div>
+            <div class="new-table heavyFont hyphen">{Lang.labelIonizationMain}</div>
+            <div class="new-table">{Constants[num].ion}</div>
+            <div class="new-table heavyFont">{Lang.labelVolumeMain}</div>
+            <div class="new-table">{Constants[num].vol}</div>
+            <div class="new-table heavyFont hyphen">{Lang.labelThermalMain}</div>
+            <div class="new-table">{Constants[num].trm}</div>
+            <div class="new-table heavyFont hyphen">{Lang.labelOxidationMain}</div>
+            <div class="new-table ltrText text-left">{Constants[num].oxi}</div>
           </div>
         </div>
         <!-- Uses -->
         <div class="box-content masonry-col">
-          <span id="uses" class="headerOutline text-upper heavyFont" />
-          <div id="elementUsesMain" class="line-height-2">
+          <span class="headerOutline text-upper heavyFont">{Lang.uses}</span>
+          <div class="line-height-2">
             {@html post.uses}
           </div>
           <div />
         </div>
         <!-- Hazards -->
         <div class="box-content masonry-col text-center">
-          <div id="elementDangersMain" class="line-height-2">
+          <div class="line-height-2">
             {@html post.dangers}
           </div>
         </div>
