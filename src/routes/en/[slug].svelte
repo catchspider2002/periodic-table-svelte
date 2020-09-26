@@ -17,6 +17,7 @@
   let langValue = "en";
   export let post;
   import Constants from "../../components/constants.js";
+  import Electron from "../../components/Electron.svelte";
   import Lang from "./locale.js";
   import { onMount } from "svelte";
   import { beforeUpdate, afterUpdate } from "svelte";
@@ -187,6 +188,10 @@
   .content :global(li) {
     margin: 0 0 0.5em 0;
   }
+
+  .content {
+    background-color: var(--body-bg-color);
+  }
 </style>
 
 <svelte:head>
@@ -202,7 +207,7 @@
         <div class="flex-container row">
           <div class="flex-cell">
             <div id="firstSquare" class="flex-item masonry-col flex flex-col">
-              <div class="flex line-height-normal">{element.num}</div>
+              <div id="resultNumber" class="flex line-height-normal">{element.num}</div>
               <div id="resultSymbol" class="text-center flex content-center justify-center line-height-normal">
                 <span class="self-center">{element.sym}</span>
               </div>
@@ -275,6 +280,7 @@
               {@html element.cnf}
             </div>
           </div>
+          <Electron num={element.num} sym={element.sym} />
         </div>
         <!-- Facts -->
         <div class="box-content masonry-col text-center">
@@ -335,11 +341,19 @@
           <div class="grid">
             <div class="new-table heavyFont">{Lang.labelCrustMain}</div>
             <div class="new-table">
-              {#if element.crt === 'na'}{Lang.na}{:else}{getNum(element.crt)}{/if}
+              {#if element.crt === 'na'}
+                {Lang.na}
+              {:else}
+                {@html getNum(element.crt)}
+              {/if}
             </div>
             <div class="new-table heavyFont">{Lang.labelUniverseMain}</div>
             <div class="new-table">
-              {#if element.uni === 'na'}{Lang.na}{:else}{getNum(element.uni)}{/if}
+              {#if element.uni === 'na'}
+                {Lang.na}
+              {:else}
+                {@html getNum(element.uni)}
+              {/if}
             </div>
           </div>
         </div>
