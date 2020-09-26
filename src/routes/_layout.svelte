@@ -1,7 +1,25 @@
 <script>
   import Nav from "../components/Nav.svelte";
+  import { onMount } from "svelte";
 
   export let segment;
+  console.log("Checking layout");
+
+  onMount(async () => {
+    let defaultNewTheme = localStorage.getItem("defaultNewTheme");
+
+    if (!defaultNewTheme) {
+      defaultNewTheme = "light";
+
+      if (window.matchMedia("(prefers-color-scheme)").media !== "not all") {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) defaultNewTheme = "dark";
+        else defaultNewTheme = "light";
+      }
+
+      localStorage.setItem("defaultNewTheme", defaultNewTheme);
+    }
+    console.log(localStorage.getItem("defaultNewTheme"));
+  });
 </script>
 
 <style>
@@ -17,6 +35,6 @@
 
 <Nav {segment} />
 
-<main>
+<main data-theme="light" >
   <slot />
 </main>

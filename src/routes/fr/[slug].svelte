@@ -14,11 +14,109 @@
   </script>
   
   <script>
+	let langValue = "fr";
 	export let post;
 	import Constants from "../../components/constants.js";
 	import Lang from "./locale.js";
+	import { onMount } from "svelte";
+	import { beforeUpdate, afterUpdate } from "svelte";
   
 	let num = post.num - 1;
+	let element = Constants[num];
+  
+	let previousNum = num - 1;
+	let nextNum = num - -1;
+  
+	function id(text) {
+	  return document.getElementById(text);
+	}
+  
+	function getNum(value) {
+	  if (langValue === "ar") {
+		// Arabic
+		value = value.toString().replace(/\./g, "٫");
+		var id = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+		return value.toString().replace(/[0-9]/g, function (w) {
+		  return id[+w];
+		});
+	  } else if (langValue === "fa") {
+		// Persian
+		value = value.toString().replace(/\./g, "٫");
+		var id = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+		return value.toString().replace(/[0-9]/g, function (w) {
+		  return id[+w];
+		});
+	  } else return value;
+	}
+  
+	let previousElement, nextElement;
+  
+	function runOnLoad() {
+	  id("highlight").setAttribute("transform", "translate(" + post.highlight + ")");
+  
+	  if (num === "1") {
+		previousElement = "-";
+		//   id("previousElement").innerHTML = "&mdash;";
+		id("previousElement").style.textDecoration = "none";
+	  } else {
+		previousElement = Lang[Constants[previousNum].nme];
+		id("previousElement").href = langValue + "/" + Constants[previousNum].nme;
+	  }
+  
+	  if (num === "118") {
+		nextElement = "&mdash;";
+		id("nextElement").style.textDecoration = "none";
+	  } else {
+		nextElement = Lang[Constants[nextNum].nme];
+		id("nextElement").href = langValue + "/" + Constants[nextNum].nme;
+	  }
+	}
+  
+	onMount(async () => {
+	  console.log("On Mount");
+	  runOnLoad();
+	});
+  
+	beforeUpdate(() => {
+	  console.log("Before update");
+	  // runOnLoad();
+	});
+  
+	afterUpdate(() => {
+	  console.log("After update");
+	});
+  
+	let imageSrc = post.sym;
+	switch (imageSrc) {
+	  case "Db":
+	  case "Fl":
+	  case "Lv":
+	  case "Mc":
+	  case "Ts":
+	  case "Og":
+	  case "Nh":
+		imageSrc = "Db";
+		break;
+	  case "At":
+	  case "Tc":
+		imageSrc = "At";
+		break;
+	  case "Po":
+	  case "Ra":
+		imageSrc = "Po";
+		break;
+	  case "Es":
+	  case "Fm":
+		imageSrc = "Es";
+		break;
+	  case "Cn":
+	  case "Ds":
+	  case "Hs":
+	  case "Mt":
+	  case "Rg":
+		imageSrc = "Cn";
+		break;
+	}
   </script>
   
   <style>
@@ -70,20 +168,22 @@
 		  <div class="flex-container row">
 			<div class="flex-cell">
 			  <div id="firstSquare" class="flex-item masonry-col flex flex-col">
-				<div class="flex line-height-normal">{Constants[num].num}</div>
+				<div class="flex line-height-normal">{element.num}</div>
 				<div id="resultSymbol" class="text-center flex content-center justify-center line-height-normal">
-				  <span class="self-center">{Constants[num].sym}</span>
+				  <span class="self-center">{element.sym}</span>
 				</div>
 			  </div>
 			</div>
 			<div class="flex-cell">
 			  <div id="secondSquare" class="flex-item masonry-col grid">
 				<div class="heavyFont">{Lang.group}</div>
-				<div>{Constants[num].grp}</div>
+				<div>
+				  {#if element.grp === 'na'}{Lang.na}{:else}{getNum(element.grp)}{/if}
+				</div>
 				<div class="heavyFont">{Lang.period}</div>
-				<div>{Constants[num].prd}</div>
+				<div>{element.prd}</div>
 				<div class="heavyFont">{Lang.block}</div>
-				<div>{Constants[num].blk}</div>
+				<div>{element.blk}</div>
 			  </div>
 			</div>
 		  </div>
@@ -93,9 +193,9 @@
 			  <div class="new-table text-center heavyFont truncate">{Lang.protons}</div>
 			  <div class="new-table text-center heavyFont truncate">{Lang.electrons}</div>
 			  <div class="new-table text-center heavyFont truncate">{Lang.neutrons}</div>
-			  <div class="text-center new-table font-size-1-5">{Constants[num].p}</div>
-			  <div class="text-center new-table font-size-1-5">{Constants[num].e}</div>
-			  <div class="text-center new-table font-size-1-5">{Constants[num].n}</div>
+			  <div class="text-center new-table font-size-1-5">{element.p}</div>
+			  <div class="text-center new-table font-size-1-5">{element.e}</div>
+			  <div class="text-center new-table font-size-1-5">{element.n}</div>
 			</div>
 		  </div>
 		  <!-- General Prooperties -->
@@ -103,19 +203,19 @@
 			<span class="headerOutline text-upper heavyFont">{Lang.labelGeneralProp}</span>
 			<div class="grid">
 			  <div class="new-table heavyFont">{Lang.labelAtmNoMain}</div>
-			  <div class="new-table">{Constants[num].num}</div>
+			  <div class="new-table">{element.num}</div>
 			  <div class="new-table heavyFont">{Lang.labelAtmWtMain}</div>
-			  <div class="new-table">{Constants[num].aWt}</div>
+			  <div class="new-table">{element.aWt}</div>
 			  <div class="new-table heavyFont">{Lang.labelMassNum}</div>
-			  <div class="new-table">{Constants[num].mNo}</div>
+			  <div class="new-table">{element.mNo}</div>
 			  <div class="new-table heavyFont">{Lang.labelCategoryMain}</div>
-			  <div class="new-table">{Constants[num].ctg}</div>
+			  <div class="new-table">{Lang[element.ctg]}</div>
 			  <div class="new-table heavyFont">{Lang.labelColorMain}</div>
-			  <div class="new-table">{Constants[num].clr}</div>
+			  <div class="new-table">{Lang[element.clr]}</div>
 			  <div class="new-table heavyFont">{Lang.labelRadioMain}</div>
-			  <div class="new-table">{Constants[num].rdo}</div>
+			  <div class="new-table">{Lang[element.rdo]}</div>
 			  <div class="new-table heavyFont">{Lang.labelStructureMain}</div>
-			  <div class="new-table">{Constants[num].stc}</div>
+			  <div class="new-table">{Lang[element.stc]}</div>
 			</div>
 		  </div>
 		  <!-- Name Reason -->
@@ -135,10 +235,10 @@
 		  <div id="electronConf" class="box-content masonry-col">
 			<div class="grid padding-bottom-25">
 			  <div class="new-table heavyFont">{Lang.labelElectronsMain}</div>
-			  <div class="new-table ltrText text-left">{Constants[num].elc}</div>
+			  <div class="new-table ltrText text-left">{element.elc}</div>
 			  <div class="new-table heavyFont hyphen">{Lang.labelConfigMain}</div>
 			  <div class="new-table ltrText text-left">
-				{@html Constants[num].cnf}
+				{@html element.cnf}
 			  </div>
 			</div>
 		  </div>
@@ -153,19 +253,47 @@
 			<span class="headerOutline text-upper heavyFont">{Lang.labelPhysicalProp}</span>
 			<div class="grid">
 			  <div class="new-table heavyFont">{Lang.labelPhaseMain}</div>
-			  <div class="new-table">{Constants[num].phs}</div>
+			  <div class="new-table">{Lang[element.phs]}</div>
 			  <div class="new-table heavyFont">{Lang.labelDensityMain}</div>
-			  <div class="new-table">{Constants[num].dns}</div>
+			  <div class="new-table">
+				{#if element.dns === '-'}
+				  -
+				{:else}
+				  {getNum(element.dns)}
+				  {@html Lang.labelDensity}
+				{/if}
+			  </div>
 			  <div class="new-table heavyFont">{Lang.labelMeltingMain}</div>
-			  <div class="new-table">{Constants[num].mlt}</div>
+			  <div class="new-table">{element.mlt}</div>
 			  <div class="new-table heavyFont">{Lang.labelBoilingMain}</div>
-			  <div class="new-table">{Constants[num].bln}</div>
+			  <div class="new-table">{element.bln}</div>
 			  <div class="new-table heavyFont">{Lang.labelFusionMain}</div>
-			  <div class="new-table">{Constants[num].fsn}</div>
+			  <div class="new-table">
+				{#if element.fsn === 'na'}
+				  {Lang.na}
+				{:else}
+				  {getNum(element.fsn)}
+				  {@html Lang.labelFusion}
+				{/if}
+			  </div>
 			  <div class="new-table heavyFont">{Lang.labelVaporizationMain}</div>
-			  <div class="new-table">{Constants[num].vpn}</div>
+			  <div class="new-table">
+				{#if element.vpn === 'na'}
+				  {Lang.na}
+				{:else}
+				  {getNum(element.vpn)}
+				  {@html Lang.labelFusion}
+				{/if}
+			  </div>
 			  <div class="new-table heavyFont hyphen">{Lang.labelSpecificMain}</div>
-			  <div class="new-table">{Constants[num].spc}</div>
+			  <div class="new-table">
+				{#if element.spc === '-'}
+				  -
+				{:else}
+				  {getNum(element.spc)}
+				  {@html Lang.labelSpecific}
+				{/if}
+			  </div>
 			</div>
 		  </div>
 		  <!-- Abundance -->
@@ -173,19 +301,22 @@
 			<div class="grid">
 			  <div class="new-table heavyFont">{Lang.labelCrustMain}</div>
 			  <div class="new-table">
-				{@html Constants[num].crt}
+				{#if element.crt === 'na'}{Lang.na}{:else}{getNum(element.crt)}{/if}
 			  </div>
 			  <div class="new-table heavyFont">{Lang.labelUniverseMain}</div>
 			  <div class="new-table">
-				{@html Constants[num].uni}
+				{#if element.uni === 'na'}{Lang.na}{:else}{getNum(element.uni)}{/if}
 			  </div>
 			</div>
 		  </div>
 		  <!-- Image -->
 		  <div class="masonry-col">
-			<div class="blog-thumb"><img id="elementPic" src="images/{Constants[num].sym}.png" alt="" data-toggle="modal" data-target="#exampleModal" /></div>
+			<div class="blog-thumb">
+			  <img id="elementPic" src="images/{imageSrc}.jpg" alt={post.desc} data-toggle="modal" data-target="#exampleModal" />
+			</div>
 			<div class="box-content bottom-rounded line-height-2">
-			  <span id="imgCredits" class="heavyFont" /><span id="imgCreditsLink" />
+			  <span id="imgCredits" class="heavyFont">{Lang.imgCredits}: </span>
+			  <span id="imgCreditsLink" />
 			  <div>
 				{@html post.desc}
 			  </div>
@@ -195,9 +326,11 @@
 		  <div class="box-content masonry-col">
 			<div class="grid">
 			  <div class="new-table heavyFont">{Lang.labelCASMain}</div>
-			  <div class="new-table">{Constants[num].cas}</div>
+			  <div class="new-table">{element.cas}</div>
 			  <div class="new-table heavyFont">{Lang.labelCIDMain}</div>
-			  <div class="new-table">{Constants[num].cid}</div>
+			  <div class="new-table">
+				{#if element.cid === 'na'}{Lang.na}{:else}{getNum(element.cid)}{/if}
+			  </div>
 			</div>
 		  </div>
 		  <!-- Atomic Properties -->
@@ -205,19 +338,36 @@
 			<span class="headerOutline text-upper heavyFont">{Lang.labelAtomicProp}</span>
 			<div class="grid">
 			  <div class="new-table heavyFont">{Lang.labelRadiusMain}</div>
-			  <div class="new-table">{Constants[num].aRd}</div>
+			  <div class="new-table">
+				{#if element.aRd === '-'}-{:else}{getNum(element.aRd)} pm{/if}
+			  </div>
 			  <div class="new-table heavyFont">{Lang.labelCovalentMain}</div>
-			  <div class="new-table">{Constants[num].cRd}</div>
+			  <div class="new-table">
+				{#if element.cRd === '-'}-{:else}{getNum(element.cRd)} pm{/if}
+			  </div>
 			  <div class="new-table heavyFont hyphen">{Lang.labelElectronegativityMain}</div>
-			  <div class="new-table">{Constants[num].eNg}</div>
+			  <div class="new-table">
+				{#if element.eNg === '-'}-{:else}{getNum(element.eNg)} ({Lang.pauling}){/if}
+			  </div>
 			  <div class="new-table heavyFont hyphen">{Lang.labelIonizationMain}</div>
-			  <div class="new-table">{Constants[num].ion}</div>
+			  <div class="new-table">
+				{#if element.ion === '-'}-{:else}{getNum(element.ion)} {Lang.labelIonization}{/if}
+			  </div>
 			  <div class="new-table heavyFont">{Lang.labelVolumeMain}</div>
-			  <div class="new-table">{Constants[num].vol}</div>
+			  <div class="new-table">
+				{#if element.vol === '-'}
+				  -
+				{:else}
+				  {getNum(element.vol)}
+				  {@html Lang.labelVolume}
+				{/if}
+			  </div>
 			  <div class="new-table heavyFont hyphen">{Lang.labelThermalMain}</div>
-			  <div class="new-table">{Constants[num].trm}</div>
+			  <div class="new-table">
+				{#if element.trm === '-'}-{:else}{getNum(element.trm)} {Lang.labelThermal}{/if}
+			  </div>
 			  <div class="new-table heavyFont hyphen">{Lang.labelOxidationMain}</div>
-			  <div class="new-table ltrText text-left">{Constants[num].oxi}</div>
+			  <div class="new-table ltrText text-left">{element.oxi}</div>
 			</div>
 		  </div>
 		  <!-- Uses -->
@@ -236,16 +386,18 @@
 		  </div>
 		  <!-- Isotopes -->
 		  <div class="box-content masonry-col">
-			<span id="isotopes" class="headerOutline text-upper heavyFont" />
-			<div class="heavyFont padding-0 margin-y-10" id="stableIsotopes" />
-			<span id="stableIsotopesList" class="isotopeLine" />
-			<div class="heavyFont padding-0 margin-y-10" id="unstableIsotopes" />
-			<span id="unstableIsotopesList" class="isotopeLine" />
+			<span class="headerOutline text-upper heavyFont">{Lang.isotopes}</span>
+			<div class="heavyFont padding-0 margin-y-10">{Lang.stableIsotopes}</div>
+			<span class="isotopeLine">{@html post.stable}</span>
+			<div class="heavyFont padding-0 margin-y-10">{Lang.unstableIsotopes}</div>
+			<span class="isotopeLine">{@html post.unstable}</span>
 		  </div>
 		  <!-- Important Links -->
 		  <div class="box-content masonry-col">
-			<span id="labelLinksMain" class="headerOutline text-upper heavyFont" />
-			<div class="webLink"><a id="link1" class="underlineLink" target="_blank" rel="noopener noreferrer" /></div>
+			<span class="headerOutline text-upper heavyFont">{Lang.labelLinksMain}</span>
+			<div class="webLink">
+			  <a id="link1" href="{Lang.wikiLink}{element.nme}" class="underlineLink" target="_blank" rel="noopener noreferrer">{Lang.wiki}</a>
+			</div>
 			<a id="link2" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Encyclopaedia Britannica</span></a>
 			<a id="link3" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Wolfram Alpha</span></a>
 			<a id="link4" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Chemicool</span></a>
@@ -290,9 +442,8 @@
 			  </g>
 			</svg>
 			<div id="elementNav" class="row text-center">
-			  <a class="underlineLink" id="previousElement" />&nbsp;&nbsp;←&nbsp; <span id="currentElement" />&nbsp;&nbsp;→&nbsp; <a
-				class="underlineLink"
-				id="nextElement" />
+			  <a href="#a" class="underlineLink" id="previousElement">{previousElement}</a>&nbsp;&nbsp;←&nbsp; <span id="currentElement" />&nbsp;&nbsp;→&nbsp;
+			  <a class="underlineLink" id="nextElement">{nextElement}</a>
 			</div>
 		  </div>
 		</div>

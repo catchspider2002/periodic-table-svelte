@@ -8,9 +8,9 @@
     font-weight: 300;
     padding: 0 1em;
     position: sticky;
-	top: 0;
-	z-index: 1;
-	background-color: darkslategray;
+    top: 0;
+    z-index: 1;
+    background-color: darkslategray;
   }
 
   ul {
@@ -52,7 +52,7 @@
   }
 </style>
 
-<nav>
+<nav data-theme="light">
   <ul>
     <li><a aria-current={segment === undefined ? 'page' : undefined} href=".">home</a></li>
     <li><a aria-current={segment === 'about' ? 'page' : undefined} href="en/about">en about</a></li>
@@ -62,5 +62,6 @@
 		     the blog data when we hover over the link or tap it on a touchscreen -->
     <li><a rel="prefetch" aria-current={segment === 'en' ? 'page' : undefined} href="en">en</a></li>
     <li><a rel="prefetch" aria-current={segment === 'fr' ? 'page' : undefined} href="fr">fr</a></li>
+    <li><button>Theme</button></li>
   </ul>
 </nav>

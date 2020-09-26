@@ -1,4 +1,7 @@
 :root {
+  --theme-color: 0, 120, 215;
+  --darker-color-50: #003c6c;
+  --darker-color-0: #003056;
   --body-bg-color: rgb(235, 235, 235);
   --card-bg-color: rgb(245, 245, 245);
   --text-color: 0, 0, 0;

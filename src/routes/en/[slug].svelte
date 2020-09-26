@@ -19,6 +19,7 @@
   import Constants from "../../components/constants.js";
   import Lang from "./locale.js";
   import { onMount } from "svelte";
+  import { beforeUpdate, afterUpdate } from "svelte";
 
   let num = post.num - 1;
   let element = Constants[num];
@@ -50,7 +51,7 @@
 
   let previousElement, nextElement;
 
-  onMount(async () => {
+  function runOnLoad() {
     id("highlight").setAttribute("transform", "translate(" + post.highlight + ")");
 
     if (num === "1") {
@@ -58,7 +59,7 @@
       //   id("previousElement").innerHTML = "&mdash;";
       id("previousElement").style.textDecoration = "none";
     } else {
-      previousElement = Constants[previousNum].nme;
+      previousElement = Lang[Constants[previousNum].nme];
       id("previousElement").href = langValue + "/" + Constants[previousNum].nme;
     }
 
@@ -66,9 +67,23 @@
       nextElement = "&mdash;";
       id("nextElement").style.textDecoration = "none";
     } else {
-      nextElement = Constants[nextNum].nme;
+      nextElement = Lang[Constants[nextNum].nme];
       id("nextElement").href = langValue + "/" + Constants[nextNum].nme;
     }
+  }
+
+  onMount(async () => {
+    console.log("On Mount");
+    runOnLoad();
+  });
+
+  beforeUpdate(() => {
+    console.log("Before update");
+    // runOnLoad();
+  });
+
+  afterUpdate(() => {
+    console.log("After update");
   });
 
   let imageSrc = post.sym;
@@ -102,6 +117,40 @@
       imageSrc = "Cn";
       break;
   }
+
+  let link2url =
+    element.num === "113" || element.num === "115" || element.num === "117" || element.num === "118" ? "element-" + element.num : element.nme;
+  let link4url = element.nme;
+
+  if (element.num === "13") link2url = link4url = "aluminum";
+  else if (element.num === "55") link2url = link4url = "cesium";
+
+  if (
+    element.num === "2" ||
+    element.num === "3" ||
+    element.num === "5" ||
+    element.num === "6" ||
+    element.num === "10" ||
+    element.num === "15" ||
+    element.num === "18" ||
+    element.num === "26" ||
+    element.num === "27" ||
+    element.num === "28" ||
+    element.num === "36" ||
+    element.num === "46" ||
+    element.num === "74" ||
+    element.num === "79" ||
+    element.num === "80" ||
+    element.num === "82" ||
+    element.num === "96"
+  )
+    link2url = link2url + "-chemical-element";
+
+  let link2 = "https://www.britannica.com/science/" + link2url;
+  let link3 = "http://www.wolframalpha.com/input/?i=" + element.nme + "+element";
+  let link4 = "http://www.chemicool.com/elements/" + link4url + ".html";
+  let link5 = "http://www.rsc.org/periodic-table/element/" + element.num + "/" + element.nme;
+  let link6 = "http://www.webelements.com/" + element.nme + "/";
 </script>
 
 <style>
@@ -162,7 +211,9 @@
           <div class="flex-cell">
             <div id="secondSquare" class="flex-item masonry-col grid">
               <div class="heavyFont">{Lang.group}</div>
-              <div>{element.grp}</div>
+              <div>
+                {#if element.grp === 'na'}{Lang.na}{:else}{getNum(element.grp)}{/if}
+              </div>
               <div class="heavyFont">{Lang.period}</div>
               <div>{element.prd}</div>
               <div class="heavyFont">{Lang.block}</div>
@@ -251,9 +302,23 @@
             <div class="new-table heavyFont">{Lang.labelBoilingMain}</div>
             <div class="new-table">{element.bln}</div>
             <div class="new-table heavyFont">{Lang.labelFusionMain}</div>
-            <div class="new-table">{element.fsn}</div>
+            <div class="new-table">
+              {#if element.fsn === 'na'}
+                {Lang.na}
+              {:else}
+                {getNum(element.fsn)}
+                {@html Lang.labelFusion}
+              {/if}
+            </div>
             <div class="new-table heavyFont">{Lang.labelVaporizationMain}</div>
-            <div class="new-table">{element.vpn}</div>
+            <div class="new-table">
+              {#if element.vpn === 'na'}
+                {Lang.na}
+              {:else}
+                {getNum(element.vpn)}
+                {@html Lang.labelFusion}
+              {/if}
+            </div>
             <div class="new-table heavyFont hyphen">{Lang.labelSpecificMain}</div>
             <div class="new-table">
               {#if element.spc === '-'}
@@ -270,11 +335,11 @@
           <div class="grid">
             <div class="new-table heavyFont">{Lang.labelCrustMain}</div>
             <div class="new-table">
-              {@html element.crt}
+              {#if element.crt === 'na'}{Lang.na}{:else}{getNum(element.crt)}{/if}
             </div>
             <div class="new-table heavyFont">{Lang.labelUniverseMain}</div>
             <div class="new-table">
-              {@html element.uni}
+              {#if element.uni === 'na'}{Lang.na}{:else}{getNum(element.uni)}{/if}
             </div>
           </div>
         </div>
@@ -297,7 +362,9 @@
             <div class="new-table heavyFont">{Lang.labelCASMain}</div>
             <div class="new-table">{element.cas}</div>
             <div class="new-table heavyFont">{Lang.labelCIDMain}</div>
-            <div class="new-table">{element.cid}</div>
+            <div class="new-table">
+              {#if element.cid === 'na'}{Lang.na}{:else}{getNum(element.cid)}{/if}
+            </div>
           </div>
         </div>
         <!-- Atomic Properties -->
@@ -305,19 +372,34 @@
           <span class="headerOutline text-upper heavyFont">{Lang.labelAtomicProp}</span>
           <div class="grid">
             <div class="new-table heavyFont">{Lang.labelRadiusMain}</div>
-            <div class="new-table">{element.aRd}</div>
+            <div class="new-table">
+              {#if element.aRd === '-'}-{:else}{getNum(element.aRd)} pm{/if}
+            </div>
             <div class="new-table heavyFont">{Lang.labelCovalentMain}</div>
-            <div class="new-table">{element.cRd}</div>
+            <div class="new-table">
+              {#if element.cRd === '-'}-{:else}{getNum(element.cRd)} pm{/if}
+            </div>
             <div class="new-table heavyFont hyphen">{Lang.labelElectronegativityMain}</div>
             <div class="new-table">
-              {#if element.eNg === '-'}-{:else}{getNum(element.eNg)} {Lang.pauling}{/if}
+              {#if element.eNg === '-'}-{:else}{getNum(element.eNg)} ({Lang.pauling}){/if}
             </div>
             <div class="new-table heavyFont hyphen">{Lang.labelIonizationMain}</div>
-            <div class="new-table">{element.ion}</div>
+            <div class="new-table">
+              {#if element.ion === '-'}-{:else}{getNum(element.ion)} {Lang.labelIonization}{/if}
+            </div>
             <div class="new-table heavyFont">{Lang.labelVolumeMain}</div>
-            <div class="new-table">{element.vol}</div>
+            <div class="new-table">
+              {#if element.vol === '-'}
+                -
+              {:else}
+                {getNum(element.vol)}
+                {@html Lang.labelVolume}
+              {/if}
+            </div>
             <div class="new-table heavyFont hyphen">{Lang.labelThermalMain}</div>
-            <div class="new-table">{element.trm}</div>
+            <div class="new-table">
+              {#if element.trm === '-'}-{:else}{getNum(element.trm)} {Lang.labelThermal}{/if}
+            </div>
             <div class="new-table heavyFont hyphen">{Lang.labelOxidationMain}</div>
             <div class="new-table ltrText text-left">{element.oxi}</div>
           </div>
@@ -350,11 +432,12 @@
           <div class="webLink">
             <a id="link1" href="{Lang.wikiLink}{element.nme}" class="underlineLink" target="_blank" rel="noopener noreferrer">{Lang.wiki}</a>
           </div>
-          <a id="link2" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Encyclopaedia Britannica</span></a>
-          <a id="link3" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Wolfram Alpha</span></a>
-          <a id="link4" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Chemicool</span></a>
-          <a id="link5" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">RSC Visual Elements</span></a>
-          <a id="link6" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">WebElements</span></a>
+
+          <a href={link2} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Encyclopaedia Britannica</span></a>
+          <a href={link3} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Wolfram Alpha</span></a>
+          <a href={link4} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Chemicool</span></a>
+          <a href={link5} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">RSC Visual Elements</span></a>
+          <a href={link6} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">WebElements</span></a>
         </div>
         <!-- Small Table -->
         <div class="box-content masonry-col">
@@ -394,8 +477,8 @@
             </g>
           </svg>
           <div id="elementNav" class="row text-center">
-            <a href="#a" class="underlineLink" id="previousElement">{previousElement}</a>&nbsp;&nbsp;←&nbsp; <span id="currentElement" />&nbsp;&nbsp;→&nbsp;
-            <a class="underlineLink" id="nextElement">{nextElement}</a>
+            <a href="#a" class="underlineLink" id="previousElement">{previousElement}</a>&nbsp;&nbsp;←&nbsp; <span
+              id="currentElement">{element.sym}</span>&nbsp;&nbsp;→&nbsp; <a class="underlineLink" id="nextElement">{nextElement}</a>
           </div>
         </div>
       </div>
