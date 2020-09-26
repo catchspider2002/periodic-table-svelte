@@ -183,7 +183,7 @@
 		  </div>
 		  <!-- Image -->
 		  <div class="masonry-col">
-			<div class="blog-thumb"><img id="elementPic" src="images/placeholder.png" alt="" data-toggle="modal" data-target="#exampleModal" /></div>
+			<div class="blog-thumb"><img id="elementPic" src="images/{Constants[num].sym}.png" alt="" data-toggle="modal" data-target="#exampleModal" /></div>
 			<div class="box-content bottom-rounded line-height-2">
 			  <span id="imgCredits" class="heavyFont" /><span id="imgCreditsLink" />
 			  <div>

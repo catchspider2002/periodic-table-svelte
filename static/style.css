@@ -167,7 +167,7 @@ body {
   -ms-transition: 0.1s opacity;
   background-color: var(--body-bg-color);
   color: rgb(var(--text-color));
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 body.fade-out {
@@ -177,11 +177,14 @@ body.fade-out {
 }
 
 .normalFont {
-  font-family: "Lato Regular", "Special Regular", sans-serif;
+  /* font-family: "Lato Regular", "Special Regular", sans-serif; */
+  font-family: "Noto Sans", sans-serif;
 }
 
 .heavyFont {
-  font-family: "Lato Heavy", "Special Heavy", sans-serif;
+  /* font-family: "Lato Heavy", "Special Heavy", sans-serif; */
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 700;
 }
 
 a {
@@ -296,7 +299,8 @@ select:focus {
 }
 
 .container {
-  padding: 84px 1rem 0;
+  /* padding: 84px 1rem 0; */
+  padding: 1rem 1rem 0;
   margin: 0 auto;
 }
 
@@ -1995,7 +1999,7 @@ blockquote,
 }
 
 /* Scrollbar */
-
+/* 
 @media (hover: hover) {
   * {
     scrollbar-color: #888888 #f5f5f5;
@@ -2016,7 +2020,7 @@ blockquote,
   *::-webkit-scrollbar-thumb {
     background-color: #888888;
   }
-}
+} */
 
 /* Dropdown Link in Navbar */
 .dropdownLink,
