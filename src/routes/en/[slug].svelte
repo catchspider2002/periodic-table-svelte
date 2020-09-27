@@ -18,15 +18,16 @@
   export let post;
   import Constants from "../../components/constants.js";
   import Electron from "../../components/Electron.svelte";
+  import Footer from "./_Footer.svelte";
   import Lang from "./locale.js";
   import { onMount } from "svelte";
   import { beforeUpdate, afterUpdate } from "svelte";
 
   let num = post.num - 1;
   let element = Constants[num];
-
-  let previousNum = num - 1;
-  let nextNum = num - -1;
+  let previousNum, nextNum, imageSrc;
+  let link2, link3, link4, link5, link6;
+  let previousElement, nextElement;
 
   function id(text) {
     return document.getElementById(text);
@@ -49,8 +50,6 @@
       });
     } else return value;
   }
-
-  let previousElement, nextElement;
 
   function runOnLoad() {
     id("highlight").setAttribute("transform", "translate(" + post.highlight + ")");
@@ -79,120 +78,81 @@
   });
 
   beforeUpdate(() => {
-    console.log("Before update");
-    // runOnLoad();
+    num = post.num - 1;
+    element = Constants[num];
+    previousNum = num - 1;
+    nextNum = num - -1;
+    let link2url =
+      element.num === "113" || element.num === "115" || element.num === "117" || element.num === "118" ? "element-" + element.num : element.nme;
+    let link4url = element.nme;
+
+    if (element.num === "13") link2url = link4url = "aluminum";
+    else if (element.num === "55") link2url = link4url = "cesium";
+
+    if (
+      element.num === "2" ||
+      element.num === "3" ||
+      element.num === "5" ||
+      element.num === "6" ||
+      element.num === "10" ||
+      element.num === "15" ||
+      element.num === "18" ||
+      element.num === "26" ||
+      element.num === "27" ||
+      element.num === "28" ||
+      element.num === "36" ||
+      element.num === "46" ||
+      element.num === "74" ||
+      element.num === "79" ||
+      element.num === "80" ||
+      element.num === "82" ||
+      element.num === "96"
+    )
+      link2url = link2url + "-chemical-element";
+
+    link2 = "https://www.britannica.com/science/" + link2url;
+    link3 = "http://www.wolframalpha.com/input/?i=" + element.nme + "+element";
+    link4 = "http://www.chemicool.com/elements/" + link4url + ".html";
+    link5 = "http://www.rsc.org/periodic-table/element/" + element.num + "/" + element.nme;
+    link6 = "http://www.webelements.com/" + element.nme + "/";
+
+    imageSrc = post.sym;
+    switch (imageSrc) {
+      case "Db":
+      case "Fl":
+      case "Lv":
+      case "Mc":
+      case "Ts":
+      case "Og":
+      case "Nh":
+        imageSrc = "Db";
+        break;
+      case "At":
+      case "Tc":
+        imageSrc = "At";
+        break;
+      case "Po":
+      case "Ra":
+        imageSrc = "Po";
+        break;
+      case "Es":
+      case "Fm":
+        imageSrc = "Es";
+        break;
+      case "Cn":
+      case "Ds":
+      case "Hs":
+      case "Mt":
+      case "Rg":
+        imageSrc = "Cn";
+        break;
+    }
   });
 
   afterUpdate(() => {
     console.log("After update");
   });
-
-  let imageSrc = post.sym;
-  switch (imageSrc) {
-    case "Db":
-    case "Fl":
-    case "Lv":
-    case "Mc":
-    case "Ts":
-    case "Og":
-    case "Nh":
-      imageSrc = "Db";
-      break;
-    case "At":
-    case "Tc":
-      imageSrc = "At";
-      break;
-    case "Po":
-    case "Ra":
-      imageSrc = "Po";
-      break;
-    case "Es":
-    case "Fm":
-      imageSrc = "Es";
-      break;
-    case "Cn":
-    case "Ds":
-    case "Hs":
-    case "Mt":
-    case "Rg":
-      imageSrc = "Cn";
-      break;
-  }
-
-  let link2url =
-    element.num === "113" || element.num === "115" || element.num === "117" || element.num === "118" ? "element-" + element.num : element.nme;
-  let link4url = element.nme;
-
-  if (element.num === "13") link2url = link4url = "aluminum";
-  else if (element.num === "55") link2url = link4url = "cesium";
-
-  if (
-    element.num === "2" ||
-    element.num === "3" ||
-    element.num === "5" ||
-    element.num === "6" ||
-    element.num === "10" ||
-    element.num === "15" ||
-    element.num === "18" ||
-    element.num === "26" ||
-    element.num === "27" ||
-    element.num === "28" ||
-    element.num === "36" ||
-    element.num === "46" ||
-    element.num === "74" ||
-    element.num === "79" ||
-    element.num === "80" ||
-    element.num === "82" ||
-    element.num === "96"
-  )
-    link2url = link2url + "-chemical-element";
-
-  let link2 = "https://www.britannica.com/science/" + link2url;
-  let link3 = "http://www.wolframalpha.com/input/?i=" + element.nme + "+element";
-  let link4 = "http://www.chemicool.com/elements/" + link4url + ".html";
-  let link5 = "http://www.rsc.org/periodic-table/element/" + element.num + "/" + element.nme;
-  let link6 = "http://www.webelements.com/" + element.nme + "/";
 </script>
-
-<style>
-  /*
-		By default, CSS is locally scoped to the component,
-		and any unused styles are dead-code-eliminated.
-		In this page, Svelte can't know which elements are
-		going to appear inside the {{{post.html}}} block,
-		so we have to use the :global(...) modifier to target
-		all elements inside .content
-	*/
-  .content :global(h2) {
-    font-size: 1.4em;
-    font-weight: 500;
-  }
-
-  .content :global(pre) {
-    background-color: #f9f9f9;
-    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-    padding: 0.5em;
-    border-radius: 2px;
-    overflow-x: auto;
-  }
-
-  .content :global(pre) :global(code) {
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .content :global(ul) {
-    line-height: 1.5;
-  }
-
-  .content :global(li) {
-    margin: 0 0 0.5em 0;
-  }
-
-  .content {
-    background-color: var(--body-bg-color);
-  }
-</style>
 
 <svelte:head>
   <title>{post.title}</title>
@@ -498,4 +458,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="footer">
+  <Footer />
 </div>

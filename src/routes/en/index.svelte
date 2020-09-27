@@ -9,7 +9,7 @@
 </script>
 
 <script>
-	let language = 'en'
+  let langValue = "en";
   export let posts;
   import Lang from "./locale.js";
 </script>
@@ -18,6 +18,7 @@
   ul {
     margin: 0 0 1em 0;
     line-height: 1.5;
+    color: black;
   }
 </style>
 
@@ -33,6 +34,11 @@
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-    <li><a rel="prefetch" href="{language}/{post.slug}">{post.title}</a></li>
+    <li><a rel="prefetch" href="{langValue}/{post.slug}">{post.title}</a></li>
   {/each}
+  <a href="{langValue}/credits">Credits</a>
+  <br /><br />
+  <a href="{langValue}/store">Store</a><br /><br />
+  <a href="{langValue}/compare">Compare</a><br /><br />
+  <a href="{langValue}/privacy-policy">Privacy</a><br /><br />
 </ul>
