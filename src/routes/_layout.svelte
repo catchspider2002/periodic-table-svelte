@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
 
   export let segment;
-  console.log("Checking layout");
+//   console.log("Checking layout");
 
   onMount(async () => {
     let defaultNewTheme = localStorage.getItem("defaultNewTheme");

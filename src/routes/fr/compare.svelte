@@ -1,6 +1,27 @@
 <script>
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
+  import Constants from "../../components/constants.js";
+
+  let newRawData = Constants;
+  let firstElement = 0,
+    secondElement = 0;
+
+  newRawData.sort(function (a, b) {
+    if (Lang[a.nme] < Lang[b.nme]) return -1;
+    else if (Lang[a.nme] > Lang[b.nme]) return 1;
+    return 0;
+  });
+
+  let firstEle = getElement(firstElement);
+  let secondEle = getElement(firstElement);
+
+  function getElement(val) {
+    console.log(val);
+    let selectedElement = newRawData.find((x) => x.id === val);
+    if (selectedElement) return selectedElement;
+    else return newRawData[0];
+  }
 </script>
 
 <div class="content-wrapper">
@@ -11,17 +32,31 @@
           <div id="topRowCompare">
             <div id="compareTop" class="square">
               <div class="col-xs-4 new-table" />
-              <div class="col-xs-4 new-table padding-10"><select id="firstElement" aria-label="First Element" /></div>
-              <div class="col-xs-4 new-table padding-10"><select id="secondElement" aria-label="Second Element" /></div>
+              <div class="col-xs-4 new-table padding-10">
+                <!-- <select id="firstElement" aria-label="First Element" /> -->
+                <!-- <select aria-label="First Element" bind:value={selected} on:change="{() => answer = ''}"> -->
+                <select aria-label="First Element" bind:value={firstElement} on:change={() => (firstEle = getElement(firstElement))}>
+                  {#each newRawData as ele}
+                    <option value={ele.id}>{Lang[ele.nme]}</option>
+                  {/each}
+                </select>
+              </div>
+              <div class="col-xs-4 new-table padding-10">
+                <select aria-label="Second Element" bind:value={secondElement} on:change={() => (secondEle = getElement(secondElement))}>
+                  {#each newRawData as ele}
+                    <option value={ele.id}>{Lang[ele.nme]}</option>
+                  {/each}
+                </select>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelName}</div>
             <a id="compEle1">
-              <div class="col-xs-4 new-table compareLink"><span id="name1" class="underlineLink" /></div>
+              <div class="col-xs-4 new-table compareLink"><span id="name1" class="underlineLink">{Lang[firstEle.nme]}</span></div>
             </a>
             <a id="compEle2">
-              <div class="col-xs-4 new-table compareLink"><span id="name2" class="underlineLink" /></div>
+              <div class="col-xs-4 new-table compareLink"><span id="name2" class="underlineLink">{Lang[secondEle.nme]}</span></div>
             </a>
           </div>
           <div class="row">
@@ -141,16 +176,12 @@
             <div id="covRadius2" class="col-xs-4 new-table" />
           </div>
           <div class="row">
-            <div class="col-xs-4 new-table heavyFont hyphen">
-              <span>{Lang.labelElectronegativityMain}</span> (<span>{Lang.pauling}</span>)
-            </div>
+            <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelElectronegativityMain}</span> (<span>{Lang.pauling}</span>)</div>
             <div id="eleNeg1" class="col-xs-4 new-table" />
             <div id="eleNeg2" class="col-xs-4 new-table" />
           </div>
           <div class="row">
-            <div class="col-xs-4 new-table heavyFont hyphen">
-              <span>{Lang.labelIonizationMain}</span> (<span>{Lang.labelIonization}</span>)
-            </div>
+            <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelIonizationMain}</span> (<span>{Lang.labelIonization}</span>)</div>
             <div id="ionization1" class="col-xs-4 new-table" />
             <div id="ionization2" class="col-xs-4 new-table" />
           </div>
@@ -162,9 +193,7 @@
             <div id="volume2" class="col-xs-4 new-table" />
           </div>
           <div class="row">
-            <div class="col-xs-4 new-table heavyFont hyphen">
-              <span>{Lang.labelThermalMain}</span> (<span>{Lang.labelThermal}</span>)
-            </div>
+            <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelThermalMain}</span> (<span>{Lang.labelThermal}</span>)</div>
             <div id="theCond1" class="col-xs-4 new-table" />
             <div id="theCond2" class="col-xs-4 new-table" />
           </div>

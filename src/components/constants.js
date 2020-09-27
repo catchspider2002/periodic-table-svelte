@@ -70,9 +70,11 @@ langValue === "sv" || langValue === "tr" || langValue === "uk" || langValue === 
 else
   defaultPunc = "dot";
 
+let rawData = []
+
 if(defaultPunc === "comma")
 {	
-var rawData = [
+ rawData = [
   { id: "ele1", num: "1", nme: "hydrogen", sym: "H", grp: 1, prd: 1, blk: "s", aWt: "1,00794", ctg: c5, clr: clrLes, rdo: noVal, stc: crsSH, phs: gas, dns: "0,00008988", mlt: -259.14, bln: -252.87,  fsn: "0,558", vpn: "0,452", spc: "14,304", elc: "1", cnf: "1s" + s1, aRd: "53", cRd: "31", eNg: "2,2", ion: "13,5984", trm: "0,001815", oxi: "-1, 1", vol: "14,4", crt: "0,15%", uni: "75%", yr: "1766", mNo: 1, p: 1, e: 1, n: 0, cid: "783", cas: "1333-74-0"},
   { id: "ele2", num: "2", nme: "helium", sym: "He", grp: 18, prd: 1, blk: "s", aWt: "4,002602", ctg: c8, clr: clrLes, rdo: noVal, stc: crsFCC, phs: gas, dns: "0,0001785", mlt: -272.2, bln: -268.93,  fsn: "0,02", vpn: "0,083", spc: "5,193", elc: "2", cnf: "1s" + s2, aRd: "31", cRd: "28", eNg: "-", ion: "24,5874", trm: "0,00152", oxi: "0", vol: "27,2", crt: "5,5" + pc7, uni: "23%", yr: "1868", mNo: 4, p: 2, e: 2, n: 2, cid: "23987", cas: "7440-59-7"},
   { id: "ele3", num: "3", nme: "lithium", sym: "Li", grp: 1, prd: 2, blk: "s", aWt: "6,941", ctg: c1, clr: clrSlv, rdo: noVal, stc: crsBCC, phs: sld, dns: "0,534", mlt: 180.54, bln: 1342,  fsn: "3", vpn: "147", spc: "3,582", elc: "2, 1", cnf: "[He] 2s" + s1, aRd: "152", cRd: "128", eNg: "0,98", ion: "5,3917", trm: "0,847", oxi: "1", vol: "13,10", crt: "0,0017%", uni: "6" + pc7, yr: "1817", mNo: 7, p: 3, e: 3, n: 4, cid: "3028194", cas: "7439-93-2"},
@@ -194,7 +196,7 @@ var rawData = [
 ];
 }
 else {
-var rawData = [
+ rawData = [
   { id: "ele1", num: "1", nme: "hydrogen", sym: "H", grp: 1, prd: 1, blk: "s", aWt: "1.00794", ctg: c5, clr: clrLes, rdo: noVal, stc: crsSH, phs: gas, dns: "0.00008988", mlt: -259.14, bln: -252.87,  fsn: "0.558", vpn: "0.452", spc: "14.304", elc: "1", cnf: "1s" + s1, aRd: "53", cRd: "31", eNg: "2.2", ion: "13.5984", trm: "0.001815", oxi: "-1, 1", vol: "14.4", crt: "0.15%", uni: "75%", yr: "1766", mNo: 1, p: 1, e: 1, n: 0, cid: "783", cas: "1333-74-0"},
   { id: "ele2", num: "2", nme: "helium", sym: "He", grp: 18, prd: 1, blk: "s", aWt: "4.002602", ctg: c8, clr: clrLes, rdo: noVal, stc: crsFCC, phs: gas, dns: "0.0001785", mlt: -272.2, bln: -268.93,  fsn: "0.02", vpn: "0.083", spc: "5.193", elc: "2", cnf: "1s" + s2, aRd: "31", cRd: "28", eNg: "-", ion: "24.5874", trm: "0.00152", oxi: "0", vol: "27.2", crt: "5.5" + pc7, uni: "23%", yr: "1868", mNo: 4, p: 2, e: 2, n: 2, cid: "23987", cas: "7440-59-7"},
   { id: "ele3", num: "3", nme: "lithium", sym: "Li", grp: 1, prd: 2, blk: "s", aWt: "6.941", ctg: c1, clr: clrSlv, rdo: noVal, stc: crsBCC, phs: sld, dns: "0.534", mlt: 180.54, bln: 1342,  fsn: "3", vpn: "147", spc: "3.582", elc: "2, 1", cnf: "[He] 2s" + s1, aRd: "152", cRd: "128", eNg: "0.98", ion: "5.3917", trm: "0.847", oxi: "1", vol: "13.10", crt: "0.0017%", uni: "6" + pc7, yr: "1817", mNo: 7, p: 3, e: 3, n: 4, cid: "3028194", cas: "7439-93-2"},
