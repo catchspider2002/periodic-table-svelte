@@ -14,14 +14,15 @@
 </script>
 
 <script>
-  let langValue = "en";
   export let post;
   import Constants from "../../components/constants.js";
   import Electron from "../../components/Electron.svelte";
+  import NavBar from "./NavBar.svelte";
   import Footer from "./_Footer.svelte";
   import Lang from "./locale.js";
   import { onMount } from "svelte";
   import { beforeUpdate, afterUpdate } from "svelte";
+  let langValue = Lang.lang;
 
   let num = post.num - 1;
   let element = Constants[num];
@@ -159,6 +160,8 @@
 </svelte:head>
 
 <h1>{post.title}</h1>
+
+<!-- <NavBar /> -->
 
 <div class="content">
   <div class="content-wrapper">

@@ -9,9 +9,9 @@
 </script>
 
 <script>
-  let langValue = "en";
   export let posts;
   import Lang from "./locale.js";
+  let langValue = Lang.lang;
 </script>
 
 <style>
@@ -41,4 +41,5 @@
   <a href="{langValue}/store">Store</a><br /><br />
   <a href="{langValue}/compare">Compare</a><br /><br />
   <a href="{langValue}/privacy-policy">Privacy</a><br /><br />
+  <a href="{langValue}/privacy-policy">List</a><br /><br />
 </ul>

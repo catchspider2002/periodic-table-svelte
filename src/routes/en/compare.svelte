@@ -3,7 +3,7 @@
   import Footer from "./_Footer.svelte";
   import Constants from "../../components/constants.js";
 
-  let langValue = "en";
+  let langValue = Lang.lang;
   let newRawData = Constants;
   let firstElement = 0,
     secondElement = 0;
@@ -143,8 +143,8 @@
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelAtmWtMain}</div>
-            <div id="atmWeight1" class="col-xs-4 new-table">{getNum(firstEle.aWt)}</div>
-            <div id="atmWeight2" class="col-xs-4 new-table">{getNum(secondEle.aWt)}</div>
+            <div class="col-xs-4 new-table">{getNum(firstEle.aWt)}</div>
+            <div class="col-xs-4 new-table">{getNum(secondEle.aWt)}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelCategoryMain}</div>
@@ -173,13 +173,13 @@
             <div class="col-xs-4 new-table heavyFont">
               <span>{Lang.labelDensityMain}</span> (<span>{@html Lang.labelDensity}</span>)
             </div>
-            <div id="density1" class="col-xs-4 new-table" />
-            <div id="density2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">{getNum(firstEle.dns)}</div>
+            <div class="col-xs-4 new-table">{getNum(secondEle.dns)}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelPhaseMain}</div>
-            <div id="phase1" class="col-xs-4 new-table" />
-            <div id="phase2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">{Lang[firstEle.phs]}</div>
+            <div class="col-xs-4 new-table">{Lang[secondEle.phs]}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelMeltingMain}</div>
@@ -193,76 +193,88 @@
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont"><span>{Lang.labelFusionMain}</span> (<span>{Lang.labelFusion}</span>)</div>
-            <div id="fusion1" class="col-xs-4 new-table">
+            <div class="col-xs-4 new-table">
               {#if firstEle.fsn === 'na'}{Lang.na}{:else}{getNum(firstEle.fsn)}{/if}
             </div>
-            <div id="fusion2" class="col-xs-4 new-table">
+            <div class="col-xs-4 new-table">
               {#if secondEle.fsn === 'na'}{Lang.na}{:else}{getNum(secondEle.fsn)}{/if}
             </div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelVaporizationMain}</span> (<span>{Lang.labelFusion}</span>)</div>
-            <div id="vaporization1" class="col-xs-4 new-table">
+            <div class="col-xs-4 new-table">
               {#if firstEle.vpn === 'na'}{Lang.na}{:else}{getNum(firstEle.vpn)}{/if}
             </div>
-            <div id="vaporization2" class="col-xs-4 new-table">
+            <div class="col-xs-4 new-table">
               {#if secondEle.vpn === 'na'}{Lang.na}{:else}{getNum(secondEle.vpn)}{/if}
             </div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelSpecificMain}</span> (<span>{Lang.labelSpecific}</span>)</div>
-            <div id="spHeat1" class="col-xs-4 new-table" />
-            <div id="spHeat2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">{getNum(firstEle.spc)}</div>
+            <div class="col-xs-4 new-table">{getNum(secondEle.spc)}</div>
           </div>
           <div class="padding-top-42">
             <div class="headerOutline text-upper heavyFont">{Lang.labelAtomicProp}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelRadiusMain}</div>
-            <div id="atmRadius1" class="col-xs-4 new-table" />
-            <div id="atmRadius2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">
+              {#if firstEle.aRd === '-'}-{:else}{getNum(firstEle.aRd)} pm{/if}
+            </div>
+            <div class="col-xs-4 new-table">
+              {#if secondEle.aRd === '-'}-{:else}{getNum(secondEle.aRd)} pm{/if}
+            </div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelCovalentMain}</div>
-            <div id="covRadius1" class="col-xs-4 new-table" />
-            <div id="covRadius2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">
+              {#if firstEle.cRd === '-'}-{:else}{getNum(firstEle.cRd)} pm{/if}
+            </div>
+            <div class="col-xs-4 new-table">
+              {#if secondEle.cRd === '-'}-{:else}{getNum(secondEle.cRd)} pm{/if}
+            </div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelElectronegativityMain}</span> (<span>{Lang.pauling}</span>)</div>
-            <div id="eleNeg1" class="col-xs-4 new-table" />
-            <div id="eleNeg2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">{getNum(firstEle.eNg)}</div>
+            <div class="col-xs-4 new-table">{getNum(secondEle.eNg)}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelIonizationMain}</span> (<span>{Lang.labelIonization}</span>)</div>
-            <div id="ionization1" class="col-xs-4 new-table" />
-            <div id="ionization2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">{getNum(firstEle.ion)}</div>
+            <div class="col-xs-4 new-table">{getNum(secondEle.ion)}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">
               <span>{Lang.labelVolumeMain}</span> (<span>{@html Lang.labelVolume}</span>)
             </div>
-            <div id="volume1" class="col-xs-4 new-table" />
-            <div id="volume2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">{getNum(firstEle.vol)}</div>
+            <div class="col-xs-4 new-table">{getNum(secondEle.vol)}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont hyphen"><span>{Lang.labelThermalMain}</span> (<span>{Lang.labelThermal}</span>)</div>
-            <div id="theCond1" class="col-xs-4 new-table" />
-            <div id="theCond2" class="col-xs-4 new-table" />
+            <div class="col-xs-4 new-table">{getNum(firstEle.trm)}</div>
+            <div class="col-xs-4 new-table">{getNum(secondEle.trm)}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont hyphen">{Lang.labelOxidationMain}</div>
-            <div id="oxidation1" class="col-xs-4 new-table ltrText text-left" />
-            <div id="oxidation2" class="col-xs-4 new-table ltrText text-left" />
+            <div class="col-xs-4 new-table ltrText text-left">{getNum(firstEle.oxi)}</div>
+            <div class="col-xs-4 new-table ltrText text-left">{getNum(secondEle.oxi)}</div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont hyphen">{Lang.labelConfigMain}</div>
-            <div id="elecConfig1" class="col-xs-4 new-table ltrText text-left" />
-            <div id="elecConfig2" class="col-xs-4 new-table ltrText text-left" />
+            <div class="col-xs-4 new-table ltrText text-left">
+              {@html firstEle.cnf}
+            </div>
+            <div class="col-xs-4 new-table ltrText text-left">
+              {@html secondEle.cnf}
+            </div>
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelElectronsMain}</div>
-            <div id="electrons1" class="col-xs-4 new-table ltrText text-left" />
-            <div id="electrons2" class="col-xs-4 new-table ltrText text-left" />
+            <div class="col-xs-4 new-table ltrText text-left">{getNum(firstEle.elc)}</div>
+            <div class="col-xs-4 new-table ltrText text-left">{getNum(secondEle.elc)}</div>
           </div>
         </div>
       </div>

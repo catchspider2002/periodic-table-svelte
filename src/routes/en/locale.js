@@ -1,4 +1,5 @@
 ﻿const lang = {
+  lang: "en",
   homeTitle: "Elements: The Periodic Table",
   homeHeader: "Periodic Table",
   home: "Home",

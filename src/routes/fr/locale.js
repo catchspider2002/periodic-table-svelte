@@ -1,4 +1,5 @@
 ﻿const lang = {
+  lang: "fr",
   homeTitle: "Éléments: Le Tableau Périodique",
   homeHeader: "Tableau Périodique",
   home: "Accueil",

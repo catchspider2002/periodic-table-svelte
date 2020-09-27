@@ -2,7 +2,7 @@
 	export async function preload({ params }) {
 	  // the `slug` parameter is available because
 	  // this file is called [slug].svelte
-	  const res = await this.fetch(`fr/${params.slug}.json`);
+	  const res = await this.fetch(`en/${params.slug}.json`);
 	  const data = await res.json();
   
 	  if (res.status === 200) {
@@ -14,18 +14,20 @@
   </script>
   
   <script>
-	let langValue = "fr";
 	export let post;
 	import Constants from "../../components/constants.js";
+	import Electron from "../../components/Electron.svelte";
+	import Footer from "./_Footer.svelte";
 	import Lang from "./locale.js";
 	import { onMount } from "svelte";
 	import { beforeUpdate, afterUpdate } from "svelte";
+	let langValue = Lang.lang;
   
 	let num = post.num - 1;
 	let element = Constants[num];
-  
-	let previousNum = num - 1;
-	let nextNum = num - -1;
+	let previousNum, nextNum, imageSrc;
+	let link2, link3, link4, link5, link6;
+	let previousElement, nextElement;
   
 	function id(text) {
 	  return document.getElementById(text);
@@ -48,8 +50,6 @@
 		});
 	  } else return value;
 	}
-  
-	let previousElement, nextElement;
   
 	function runOnLoad() {
 	  id("highlight").setAttribute("transform", "translate(" + post.highlight + ")");
@@ -78,82 +78,81 @@
 	});
   
 	beforeUpdate(() => {
-	  console.log("Before update");
-	  // runOnLoad();
+	  num = post.num - 1;
+	  element = Constants[num];
+	  previousNum = num - 1;
+	  nextNum = num - -1;
+	  let link2url =
+		element.num === "113" || element.num === "115" || element.num === "117" || element.num === "118" ? "element-" + element.num : element.nme;
+	  let link4url = element.nme;
+  
+	  if (element.num === "13") link2url = link4url = "aluminum";
+	  else if (element.num === "55") link2url = link4url = "cesium";
+  
+	  if (
+		element.num === "2" ||
+		element.num === "3" ||
+		element.num === "5" ||
+		element.num === "6" ||
+		element.num === "10" ||
+		element.num === "15" ||
+		element.num === "18" ||
+		element.num === "26" ||
+		element.num === "27" ||
+		element.num === "28" ||
+		element.num === "36" ||
+		element.num === "46" ||
+		element.num === "74" ||
+		element.num === "79" ||
+		element.num === "80" ||
+		element.num === "82" ||
+		element.num === "96"
+	  )
+		link2url = link2url + "-chemical-element";
+  
+	  link2 = "https://www.britannica.com/science/" + link2url;
+	  link3 = "http://www.wolframalpha.com/input/?i=" + element.nme + "+element";
+	  link4 = "http://www.chemicool.com/elements/" + link4url + ".html";
+	  link5 = "http://www.rsc.org/periodic-table/element/" + element.num + "/" + element.nme;
+	  link6 = "http://www.webelements.com/" + element.nme + "/";
+  
+	  imageSrc = post.sym;
+	  switch (imageSrc) {
+		case "Db":
+		case "Fl":
+		case "Lv":
+		case "Mc":
+		case "Ts":
+		case "Og":
+		case "Nh":
+		  imageSrc = "Db";
+		  break;
+		case "At":
+		case "Tc":
+		  imageSrc = "At";
+		  break;
+		case "Po":
+		case "Ra":
+		  imageSrc = "Po";
+		  break;
+		case "Es":
+		case "Fm":
+		  imageSrc = "Es";
+		  break;
+		case "Cn":
+		case "Ds":
+		case "Hs":
+		case "Mt":
+		case "Rg":
+		  imageSrc = "Cn";
+		  break;
+	  }
 	});
   
 	afterUpdate(() => {
 	  console.log("After update");
 	});
-  
-	let imageSrc = post.sym;
-	switch (imageSrc) {
-	  case "Db":
-	  case "Fl":
-	  case "Lv":
-	  case "Mc":
-	  case "Ts":
-	  case "Og":
-	  case "Nh":
-		imageSrc = "Db";
-		break;
-	  case "At":
-	  case "Tc":
-		imageSrc = "At";
-		break;
-	  case "Po":
-	  case "Ra":
-		imageSrc = "Po";
-		break;
-	  case "Es":
-	  case "Fm":
-		imageSrc = "Es";
-		break;
-	  case "Cn":
-	  case "Ds":
-	  case "Hs":
-	  case "Mt":
-	  case "Rg":
-		imageSrc = "Cn";
-		break;
-	}
   </script>
-  
-  <style>
-	/*
-		  By default, CSS is locally scoped to the component,
-		  and any unused styles are dead-code-eliminated.
-		  In this page, Svelte can't know which elements are
-		  going to appear inside the {{{post.html}}} block,
-		  so we have to use the :global(...) modifier to target
-		  all elements inside .content
-	  */
-	.content :global(h2) {
-	  font-size: 1.4em;
-	  font-weight: 500;
-	}
-  
-	.content :global(pre) {
-	  background-color: #f9f9f9;
-	  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-	  padding: 0.5em;
-	  border-radius: 2px;
-	  overflow-x: auto;
-	}
-  
-	.content :global(pre) :global(code) {
-	  background-color: transparent;
-	  padding: 0;
-	}
-  
-	.content :global(ul) {
-	  line-height: 1.5;
-	}
-  
-	.content :global(li) {
-	  margin: 0 0 0.5em 0;
-	}
-  </style>
   
   <svelte:head>
 	<title>{post.title}</title>
@@ -168,7 +167,7 @@
 		  <div class="flex-container row">
 			<div class="flex-cell">
 			  <div id="firstSquare" class="flex-item masonry-col flex flex-col">
-				<div class="flex line-height-normal">{element.num}</div>
+				<div id="resultNumber" class="flex line-height-normal">{element.num}</div>
 				<div id="resultSymbol" class="text-center flex content-center justify-center line-height-normal">
 				  <span class="self-center">{element.sym}</span>
 				</div>
@@ -241,6 +240,7 @@
 				{@html element.cnf}
 			  </div>
 			</div>
+			<Electron num={element.num} sym={element.sym} />
 		  </div>
 		  <!-- Facts -->
 		  <div class="box-content masonry-col text-center">
@@ -301,11 +301,19 @@
 			<div class="grid">
 			  <div class="new-table heavyFont">{Lang.labelCrustMain}</div>
 			  <div class="new-table">
-				{#if element.crt === 'na'}{Lang.na}{:else}{getNum(element.crt)}{/if}
+				{#if element.crt === 'na'}
+				  {Lang.na}
+				{:else}
+				  {@html getNum(element.crt)}
+				{/if}
 			  </div>
 			  <div class="new-table heavyFont">{Lang.labelUniverseMain}</div>
 			  <div class="new-table">
-				{#if element.uni === 'na'}{Lang.na}{:else}{getNum(element.uni)}{/if}
+				{#if element.uni === 'na'}
+				  {Lang.na}
+				{:else}
+				  {@html getNum(element.uni)}
+				{/if}
 			  </div>
 			</div>
 		  </div>
@@ -398,11 +406,12 @@
 			<div class="webLink">
 			  <a id="link1" href="{Lang.wikiLink}{element.nme}" class="underlineLink" target="_blank" rel="noopener noreferrer">{Lang.wiki}</a>
 			</div>
-			<a id="link2" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Encyclopaedia Britannica</span></a>
-			<a id="link3" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Wolfram Alpha</span></a>
-			<a id="link4" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Chemicool</span></a>
-			<a id="link5" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">RSC Visual Elements</span></a>
-			<a id="link6" class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">WebElements</span></a>
+  
+			<a href={link2} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Encyclopaedia Britannica</span></a>
+			<a href={link3} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Wolfram Alpha</span></a>
+			<a href={link4} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">Chemicool</span></a>
+			<a href={link5} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">RSC Visual Elements</span></a>
+			<a href={link6} class="webLink" target="_blank" rel="noopener noreferrer"><span class="underlineLink">WebElements</span></a>
 		  </div>
 		  <!-- Small Table -->
 		  <div class="box-content masonry-col">
@@ -442,12 +451,16 @@
 			  </g>
 			</svg>
 			<div id="elementNav" class="row text-center">
-			  <a href="#a" class="underlineLink" id="previousElement">{previousElement}</a>&nbsp;&nbsp;←&nbsp; <span id="currentElement" />&nbsp;&nbsp;→&nbsp;
-			  <a class="underlineLink" id="nextElement">{nextElement}</a>
+			  <a href="#a" class="underlineLink" id="previousElement">{previousElement}</a>&nbsp;&nbsp;←&nbsp; <span
+				id="currentElement">{element.sym}</span>&nbsp;&nbsp;→&nbsp; <a class="underlineLink" id="nextElement">{nextElement}</a>
 			</div>
 		  </div>
 		</div>
 	  </div>
 	</div>
+  </div>
+  
+  <div class="footer">
+	<Footer />
   </div>
   
