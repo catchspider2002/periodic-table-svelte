@@ -42,5 +42,8 @@
   <a href="{langValue}/compare">Compare</a><br /><br />
   <a href="{langValue}/privacy-policy">Privacy</a><br /><br />
   <a href="{langValue}/list">List</a><br /><br />
+  <a href="{langValue}/printables">Printables</a><br /><br />
+  <a href="{langValue}/translation">Translation</a><br /><br />
+  <a href="{langValue}/about">About</a><br /><br />
   
 </ul>

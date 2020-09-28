@@ -768,6 +768,10 @@ table,
   line-height: 20px;
 }
 
+#features {
+  padding: 1rem 0 1.5rem;
+}
+
 #logs > li:not(.versionHeader),
 #features > li {
   text-indent: -1.5rem;
@@ -856,7 +860,7 @@ table,
 }
 
 .navbar-default,
-button {
+button, .downloadButton {
   background-color: rgb(var(--theme-color));
 }
 
@@ -1110,8 +1114,7 @@ canvas {
   overflow: hidden;
 }
 
-#imgDesc,
-#feature1 {
+#imgDesc {
   padding-top: 1rem;
 }
 
@@ -1518,10 +1521,6 @@ input:focus + .slider {
 
 #suppLang {
   padding: 2em 1em 1em;
-}
-
-#feature9 {
-  padding-bottom: 1.5em;
 }
 
 #logs {
@@ -2147,6 +2146,31 @@ blockquote,
 
 .unavailable {
   color: rgb(var(--color9));
+}
+
+.grid-print {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 1em;
+}
+
+@media (min-width: 992px) {
+  .grid-print {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1724px) {
+  .grid-print {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.downloadButton {
+  display: flex;
+  column-gap: 1em;
+  min-width: 100px;
+  height: 45px;
 }
 
 @media print {
