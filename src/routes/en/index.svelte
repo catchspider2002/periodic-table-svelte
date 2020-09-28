@@ -41,5 +41,6 @@
   <a href="{langValue}/store">Store</a><br /><br />
   <a href="{langValue}/compare">Compare</a><br /><br />
   <a href="{langValue}/privacy-policy">Privacy</a><br /><br />
-  <a href="{langValue}/privacy-policy">List</a><br /><br />
+  <a href="{langValue}/list">List</a><br /><br />
+  
 </ul>
