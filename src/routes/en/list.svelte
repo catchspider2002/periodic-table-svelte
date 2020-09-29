@@ -21,8 +21,8 @@
   }
 
   function sortFunc(var1, var2, var3) {
-    var sortUp = "&nbsp;&nbsp;↑";
-    var sortDown = "&nbsp;&nbsp;↓";
+    var sortUp = "&nbsp;↑";
+    var sortDown = "&nbsp;↓";
 
     id(var1).innerHTML = id(var1).innerHTML === sortUp ? sortDown : sortUp;
     id(var2).innerHTML = "";
@@ -69,13 +69,13 @@
         <div class="flex flex-wrap">
           <div class="m-b-30 flex-auto m-x-15"><input class="search" id="searchText" aria-label="Search" /></div>
           <div class="m-b-30 flex-auto m-x-15">
-            <button class="sort" data-sort="listNum" on:click={sortByNumber}> <span> {Lang.sortNumber} </span> <span id="sortNum" /></button>
+            <button class="sort" data-sort="listNum" on:click={sortByNumber}><span> {Lang.sortNumber}</span><span id="sortNum" /></button>
           </div>
           <div class="m-b-30 flex-auto m-x-15">
-            <button class="sort" data-sort="listName" on:click={sortByName}> <span> {Lang.sortName} </span> <span id="sortNm" /></button>
+            <button class="sort" data-sort="listName" on:click={sortByName}><span> {Lang.sortName}</span><span id="sortNm" /></button>
           </div>
           <div class="m-b-30 flex-auto m-x-15">
-            <button class="sort" data-sort="listSym" on:click={sortBySymbol}> <span> {Lang.sortSymbol} </span> <span id="sortSym" /></button>
+            <button class="sort" data-sort="listSym" on:click={sortBySymbol}><span> {Lang.sortSymbol}</span><span id="sortSym" /></button>
           </div>
         </div>
         <div class="list text-center listGrid m-x-15">
