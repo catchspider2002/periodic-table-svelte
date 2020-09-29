@@ -1,11 +1,14 @@
 <script>
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
+  import Nav from "./Nav.svelte";
 
   function id(text) {
     return document.getElementById(text);
   }
 </script>
+
+<Nav />
 
 <div class="content-wrapper">
   <div class="container">

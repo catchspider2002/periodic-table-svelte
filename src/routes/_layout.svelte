@@ -1,5 +1,5 @@
 <script>
-  import Nav from "../components/Nav.svelte";
+//   import Nav from "../components/Nav_old_delte.svelte";
   import { onMount } from "svelte";
 
   export let segment;
@@ -33,7 +33,7 @@
   }
 </style>
 
-<Nav {segment} />
+<!-- <Nav {segment} /> -->
 
 <main data-theme="light" >
   <slot />

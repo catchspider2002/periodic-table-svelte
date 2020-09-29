@@ -11,6 +11,7 @@
 <script>
   export let posts;
   import Lang from "./locale.js";
+  import Nav from "./Nav.svelte";
   let langValue = Lang.lang;
 </script>
 

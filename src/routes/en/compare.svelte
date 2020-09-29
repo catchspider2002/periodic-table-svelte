@@ -2,6 +2,7 @@
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
   import Constants from "../../components/constants.js";
+  import Nav from "./Nav.svelte";
 
   let langValue = Lang.lang;
   let newRawData = Constants;
@@ -42,6 +43,7 @@
   }
 </script>
 
+<Nav />
 <div class="content-wrapper">
   <div class="container">
     <div class="row">

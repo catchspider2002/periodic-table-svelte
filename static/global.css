@@ -12,7 +12,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5em 0;
+  /* margin: 0 0 0.5em 0; */
   font-weight: 400;
   line-height: 1.2;
 }
@@ -305,10 +305,10 @@ select:focus {
   background-color: var(--darker-color-50);
 }
 
-.navbar-toggle {
+/* .navbar-toggle {
   width: auto;
   position: relative;
-  /*padding: 13px 14px 17px;*/
+  padding: 13px 14px 17px;
   background: transparent;
 }
 
@@ -319,7 +319,7 @@ select:focus {
   height: 2px;
   border-radius: 1rem;
   margin-top: 0.25rem;
-}
+} */
 
 .close {
   font-size: 28px;
@@ -682,7 +682,7 @@ table,
   opacity: 1;
 }
 
-.collapse {
+/* .collapse {
   display: none;
 }
 
@@ -699,7 +699,6 @@ table,
 .nav > li > a {
   display: block;
   padding: 10px;
-  /* text-decoration: none; */
 }
 
 .nav > li > a:focus,
@@ -714,7 +713,7 @@ table,
 
 .navbar-header {
   color: #fff;
-}
+} */
 
 .periodic-table-logo {
   width: 2.25rem;
@@ -748,7 +747,7 @@ table,
   font-size: 1.5em;
 }
 
-.navbar-collapse {
+/* .navbar-collapse {
   max-height: 340px;
   padding-right: 1rem;
   padding-left: 1rem;
@@ -800,7 +799,7 @@ table,
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
-}
+} */
 
 #features {
   padding: 1rem 0 1.5rem;
@@ -831,7 +830,7 @@ table,
   list-style-type: none;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .navbar-toggle {
     display: none;
   }
@@ -891,7 +890,7 @@ table,
 .navbar-default .navbar-nav > .open > a:hover {
   color: #555;
   background-color: #e7e7e7;
-}
+} */
 
 .navbar-default,
 button,
