@@ -18,7 +18,7 @@
   import Constants from "../../components/constants.js";
   import Electron from "../../components/Electron.svelte";
   import Nav from "./Nav.svelte";
-//   import NavBar from "./NavBar.svelte";
+  //   import NavBar from "./NavBar.svelte";
   import Footer from "./_Footer.svelte";
   import Lang from "./locale.js";
   import { onMount } from "svelte";
@@ -75,9 +75,39 @@
   }
 
   onMount(async () => {
+    function setDegrees() {
+      id("outputMeltingMain").textContent = getTemp(element.mlt);
+      id("outputBoilingMain").textContent = getTemp(element.bln);
+    }
+
     console.log("On Mount");
     runOnLoad();
+    setDegrees();
   });
+
+  function getTemp(tempValue) {
+    var newTemp;
+    let defaultTemp = localStorage.getItem("defaultTemp");
+    let defaultPunc = "dot";
+
+    if (tempValue == "-") newTemp = "-";
+    else {
+      if (langValue === "ar" || langValue === "fa" || langValue === "he")
+        newTemp =
+          getNum(Math.round((tempValue + 273.15) * 100) / 100) +
+          " K " +
+          (defaultTemp == "celsius" ? getNum(tempValue) + " | °C" : getNum(Math.round((tempValue * 1.8 + 32) * 100) / 100) + " °F");
+      else
+        newTemp =
+          Math.round((tempValue + 273.15) * 100) / 100 +
+          " K | " +
+          (defaultTemp == "celsius" ? tempValue + " °C" : Math.round((tempValue * 1.8 + 32) * 100) / 100 + " °F");
+    }
+
+    if (defaultPunc === "comma") newTemp = newTemp.replace(/\./g, ",");
+
+    return newTemp;
+  }
 
   beforeUpdate(() => {
     num = post.num - 1;
@@ -160,7 +190,7 @@
   <title>{post.title}</title>
 </svelte:head>
 
-<Nav/>
+<Nav />
 <h1>{post.title}</h1>
 
 <!-- <Nav /> -->
@@ -269,9 +299,9 @@
               {/if}
             </div>
             <div class="new-table heavyFont">{Lang.labelMeltingMain}</div>
-            <div class="new-table">{element.mlt}</div>
+            <div id="outputMeltingMain" class="new-table" />
             <div class="new-table heavyFont">{Lang.labelBoilingMain}</div>
-            <div class="new-table">{element.bln}</div>
+            <div id="outputBoilingMain" class="new-table" />
             <div class="new-table heavyFont">{Lang.labelFusionMain}</div>
             <div class="new-table">
               {#if element.fsn === 'na'}

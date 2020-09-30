@@ -281,6 +281,7 @@ select {
 
 select {
   /* height: 36px; */
+  margin-top: 6px;
   font-size: 14px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -ms-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
@@ -1531,7 +1532,12 @@ input:focus + .slider {
 }
 
 .eleTD {
-  cursor: pointer;
+  /* cursor: pointer; */
+  /* border: 2px solid transparent; */
+}
+
+.eleTD:hover {
+  /* border: 2px solid red; */
 }
 
 .aboutHeader {
