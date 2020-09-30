@@ -1102,6 +1102,7 @@ canvas {
   box-sizing: border-box;
 }
 
+#headerwrap,
 .content-wrapper {
   padding-bottom: 2rem;
   background-color: var(--body-bg-color);
