@@ -63,7 +63,7 @@
   }
 </script>
 
-<nav />
+<Nav />
 
 <div class="content-wrapper">
   <div class="container">
