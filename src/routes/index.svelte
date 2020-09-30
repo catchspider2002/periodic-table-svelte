@@ -1,3 +1,9 @@
+<script>
+  import Lang from "./en/locale.js";
+  import Nav from "./en/Nav.svelte";
+  let langValue = Lang.lang;
+</script>
+
 <style>
   h1,
   figure,
@@ -38,6 +44,8 @@
   <title>Sapper project template</title>
 </svelte:head>
 
+<Nav />
+
 <h1>Great success!</h1>
 
 <figure>
@@ -45,4 +53,3 @@
   <figcaption>Have fun with Sapper!</figcaption>
 </figure>
 
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
