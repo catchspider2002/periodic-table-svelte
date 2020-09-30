@@ -27,6 +27,7 @@
   <title>Blog</title>
 </svelte:head>
 
+<Nav/>
 <h1>Recent posts - {Lang.homeTitle}</h1>
 
 <ul>
