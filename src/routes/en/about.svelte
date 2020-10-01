@@ -1,7 +1,7 @@
 <script>
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
-  import Nav from "./Nav.svelte";
+  import Nav from "./_Nav.svelte";
 
   function id(text) {
     return document.getElementById(text);
@@ -141,6 +141,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <Footer />
-</div>
+<Footer />

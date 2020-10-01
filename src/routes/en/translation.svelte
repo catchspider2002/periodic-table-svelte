@@ -1,6 +1,6 @@
 <script>
   import Footer from "./_Footer.svelte";
-  import Nav from "./Nav.svelte";
+  import Nav from "./_Nav.svelte";
 </script>
 
 <Nav />
@@ -377,6 +377,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <Footer />
-</div>
+<Footer />

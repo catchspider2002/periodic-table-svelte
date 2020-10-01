@@ -17,7 +17,7 @@
   export let post;
   import Constants from "../../components/constants.js";
   import Electron from "../../components/Electron.svelte";
-  import Nav from "./Nav.svelte";
+  import Nav from "./_Nav.svelte";
   //   import NavBar from "./NavBar.svelte";
   import Footer from "./_Footer.svelte";
   import Lang from "./locale.js";
@@ -495,6 +495,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <Footer />
-</div>
+<Footer />

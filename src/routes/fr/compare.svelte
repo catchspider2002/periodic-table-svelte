@@ -2,6 +2,8 @@
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
   import Constants from "../../components/constants.js";
+  import Nav from "./_Nav.svelte";
+  import { onMount } from "svelte";
 
   let langValue = Lang.lang;
   let newRawData = Constants;
@@ -14,8 +16,27 @@
     return 0;
   });
 
+  onMount(async () => {
+    // console.log("On Mount");
+    setDegreesFirst();
+    setDegreesSecond();
+  });
+
   let firstEle = getElement(firstElement);
   let secondEle = getElement(firstElement);
+
+  function id(text) {
+    return document.getElementById(text);
+  }
+  function setDegreesFirst() {
+    id("meltPoint1").textContent = getTemp(firstEle.mlt);
+    id("boilPoint1").textContent = getTemp(firstEle.bln);
+  }
+
+  function setDegreesSecond() {
+    id("meltPoint2").textContent = getTemp(secondEle.mlt);
+    id("boilPoint2").textContent = getTemp(secondEle.bln);
+  }
 
   function getElement(val) {
     let selectedElement = newRawData.find((x) => x.id === val);
@@ -40,8 +61,33 @@
       });
     } else return value;
   }
+
+  function getTemp(tempValue) {
+    var newTemp;
+    let defaultTemp = localStorage.getItem("defaultTemp");
+    let defaultPunc = "dot";
+
+    if (tempValue == "-") newTemp = "-";
+    else {
+      if (langValue === "ar" || langValue === "fa" || langValue === "he")
+        newTemp =
+          getNum(Math.round((tempValue + 273.15) * 100) / 100) +
+          " K " +
+          (defaultTemp == "celsius" ? getNum(tempValue) + " | °C" : getNum(Math.round((tempValue * 1.8 + 32) * 100) / 100) + " °F");
+      else
+        newTemp =
+          Math.round((tempValue + 273.15) * 100) / 100 +
+          " K | " +
+          (defaultTemp == "celsius" ? tempValue + " °C" : Math.round((tempValue * 1.8 + 32) * 100) / 100 + " °F");
+    }
+
+    if (defaultPunc === "comma") newTemp = newTemp.replace(/\./g, ",");
+
+    return newTemp;
+  }
 </script>
 
+<Nav />
 <div class="content-wrapper">
   <div class="container">
     <div class="row">
@@ -282,6 +328,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <Footer />
-</div>
+<Footer />

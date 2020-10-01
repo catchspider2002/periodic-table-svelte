@@ -1,6 +1,6 @@
 <script>
   import Lang from "./en/locale.js";
-  import Nav from "./en/Nav.svelte";
+  import Nav from "./en/_Nav.svelte";
   let langValue = Lang.lang;
 </script>
 

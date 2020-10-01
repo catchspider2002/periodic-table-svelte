@@ -11,9 +11,10 @@
 <script>
   export let posts;
   import Constants from "../../components/constants.js";
+  import Footer from "./_Footer.svelte";
   import Element from "../../components/Element.svelte";
   import Lang from "./locale.js";
-  import Nav from "./Nav.svelte";
+  import Nav from "./_Nav.svelte";
   import { onMount } from "svelte";
   let langValue = Lang.lang;
 
@@ -100,9 +101,9 @@
   }
 
   function getTemp(tempValue) {
-	var newTemp;
-	let defaultTemp = localStorage.getItem("defaultTemp");
-	let defaultPunc = "dot"
+    var newTemp;
+    let defaultTemp = localStorage.getItem("defaultTemp");
+    let defaultPunc = "dot";
 
     if (tempValue == "-") newTemp = "-";
     else {
@@ -507,3 +508,5 @@
     </tbody>
   </table>
 </div>
+
+<Footer />

@@ -1,7 +1,7 @@
 <script>
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
-  import Nav from "./Nav.svelte";
+  import Nav from "./_Nav.svelte";
   import PrintableFile from "../../components/PrintableFile.svelte";
 </script>
 
@@ -69,6 +69,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <Footer />
-</div>
+<Footer />

@@ -2,7 +2,7 @@
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
   import Constants from "../../components/constants.js";
-  import Nav from "./Nav.svelte";
+  import Nav from "./_Nav.svelte";
   import { onMount } from "svelte";
 
   let langValue = Lang.lang;
@@ -18,8 +18,8 @@
 
   onMount(async () => {
     // console.log("On Mount");
-    setDegreesFirst()
-    setDegreesSecond()
+    setDegreesFirst();
+    setDegreesSecond();
   });
 
   let firstEle = getElement(firstElement);
@@ -229,8 +229,8 @@
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelMeltingMain}</div>
-            <div id="meltPoint1" class="col-xs-4 new-table"/>
-            <div id="meltPoint2" class="col-xs-4 new-table"/>
+            <div id="meltPoint1" class="col-xs-4 new-table" />
+            <div id="meltPoint2" class="col-xs-4 new-table" />
           </div>
           <div class="row">
             <div class="col-xs-4 new-table heavyFont">{Lang.labelBoilingMain}</div>
@@ -328,6 +328,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <Footer />
-</div>
+<Footer />

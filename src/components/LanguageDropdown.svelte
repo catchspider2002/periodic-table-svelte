@@ -14,6 +14,13 @@
   }
 </script>
 
+<style>
+  
+select {
+  margin-top: 5px;
+}
+</style>
+
 <select bind:value={selected} on:change={() => navigate(selected)}>
   {#each options as option}
     <option value={option.id}>{option.value}</option>
