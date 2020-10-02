@@ -2,7 +2,8 @@
   import { fly } from "svelte/transition";
   import Lang from "./locale.js";
   let langValue = Lang.lang;
-  import LangDropdown from "../../components/LanguageDropdown.svelte";
+  import Content from "./_Content.svelte";
+  import Modal from "svelte-simple-modal";
 
   let dark =
     "M406.17 372.075c-10 2-21 3-31 3-35 0-67-9-97-26-29-17-52-40-70-70-17-29-25-61-25-96 0-37 10-71 29-102-38 11-69 33-93 65-25 32-37 69-37 110 0 25 5 48 15 71 9 23 22 42 39 58 16 17 35 30 58 39 23 10 46 15 71 15 27 0 53-6 78-18 25-11 46-28 63-49zm58-24c-18 39-45 70-81 93s-75 34-118 34c-30 0-58-5-85-17s-51-27-70-47c-20-19-35-43-47-70s-17-55-17-85c0-29 5-57 16-84 11-26 26-49 45-69 18-19 41-35 67-47 26-11 54-18 83-19 8-1 14 3 17 11 4 8 2 15-4 21-17 14-29 32-38 51-8 20-13 41-13 63 0 28 7 54 21 78s33 43 57 56c24 14 50 21 78 21 22 0 44-5 65-14 8-4 15-2 20 3 3 3 5 6 5 10 1 4 1 8-1 11z";
@@ -13,16 +14,15 @@
   function changeTheme() {
     theme = theme === dark ? light : dark;
   }
-
-  function openModal() {
-    var modal = document.querySelector("#modal");
-    var modalOverlay = document.querySelector("#modal-overlay");
-    modal.classList.toggle("closed");
-    modalOverlay.classList.toggle("closed");
+  function id(text) {
+    return document.getElementById(text);
   }
 </script>
 
 <style>
+  :global(.content){
+      padding: 0;
+  }
   .toggle,
   [id^="drop"] {
     display: none;
@@ -359,9 +359,6 @@
         </svg>{Lang.store}</a>
     </li>
     <li>
-      <LangDropdown />
-    </li>
-    <li>
       <a href="{langValue}/translation">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" stroke="currentColor" fill="currentColor">
           <path
@@ -370,11 +367,14 @@
         {Lang.translation}</a>
     </li>
     <li>
-      <a href="{langValue}/settings" on:click={openModal()}>
+      <Modal>
+        <Content name={Lang.settings} />
+      </Modal>
+      <!-- <a>
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" stroke="currentColor" fill="currentColor">
           <path
             d="M434 264v-4-4-4-4l61-38-38-90-69 16-12-12 16-69-90-38-38 61h-16l-38-61-90 38 16 69-12 12-69-16-38 90 61 38v16l-61 38 38 90 69-16 12 12-16 69 90 38 38-61h16l38 61 90-38-16-69 12-12 69 16 38-90zm-28-30c1 4 1 7 1 11 1 4 1 8 1 11 0 4 0 8-1 11 0 4 0 8-1 11l56 35-20 48-64-14c-5 6-10 11-15 16s-10 10-16 15l14 64-48 20-35-56c-4 1-7 1-11 1-4 1-7 1-11 1s-7 0-11-1c-4 0-8 0-11-1l-35 56-48-20 14-64c-6-5-11-10-16-15s-10-10-15-16l-64 14-20-48 56-35c-1-4-1-7-1-11-1-4-1-7-1-11s0-7 1-11c0-4 0-8 1-11l-56-35 20-48 64 14c5-6 10-11 15-16s10-10 16-15l-14-64 48-20 35 56c4-1 7-1 11-1 4-1 7-1 11-1s7 0 11 1c4 0 8 0 11 1l35-56 48 20-14 64c6 5 11 10 16 15s10 10 15 16l64-14 20 48zM256 344c12 0 24-2 34-7 11-4 20-11 28-19s15-17 19-28c5-10 7-22 7-34s-2-24-7-34c-4-11-11-20-19-28s-17-15-28-19c-10-5-22-7-34-7s-24 2-34 7c-11 4-20 11-28 19s-15 17-19 28c-5 10-7 22-7 34s2 24 7 34c4 11 11 20 19 28s17 15 28 19c10 5 22 7 34 7zm0-150c9 0 17 2 24 5 8 3 14 8 20 13 5 6 10 12 13 20 3 7 5 15 5 24s-2 17-5 24c-3 8-8 14-13 20-6 5-12 10-20 13-7 3-15 5-24 5s-17-2-24-5c-8-3-14-8-20-13-5-6-10-12-13-20-3-7-5-15-5-24s2-17 5-24c3-8 8-14 13-20 6-5 12-10 20-13 7-3 15-5 24-5z" />
-        </svg>{Lang.settings}</a>
+        </svg>{Lang.settings}</a> -->
     </li>
     <li>
       <a on:click={() => changeTheme()}>

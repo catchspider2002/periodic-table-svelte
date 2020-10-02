@@ -1,5 +1,10 @@
 <script>
   import Lang from "./locale.js";
+  import LangDropdown from "../../components/LanguageDropdown.svelte";
+  function langChange() {
+    console.log(selected);
+  }
+  let selected = "en";
 </script>
 
 <style>
@@ -19,56 +24,14 @@
         <div class="grid grid-row-gap-10 items-center">
           <div class="new-table heavyFont text-left" id="language">{Lang.language}</div>
           <div class="new-table">
-            <select id="languageSelectSetting" aria-label="Language">
-              <!-- <option id="sysLanguage" value="sys" /> -->
-              <option value="en">English</option>
-              <option value="gb">English (UK)</option>
-              <option value="ar">العربية</option>
-              <option value="bg">Български</option>
-              <option value="ca">Català</option>
-              <option value="cs">Čeština</option>
-              <option value="da">Dansk</option>
-              <option value="de">Deutsch</option>
-              <option value="el">Ελληνικά</option>
-              <option value="es">Español</option>
-              <option value="fa">فارسی</option>
-              <option value="fi">Suomi</option>
-              <option value="fr">Français</option>
-              <option value="he">עברית</option>
-              <option value="hi">हिंदी</option>
-              <option value="hr">Hrvatski</option>
-              <option value="hu">Magyar</option>
-              <option value="id">Bahasa Indonesia</option>
-              <option value="it">Italiano</option>
-              <option value="ja">日本語</option>
-              <option value="ko">한국어</option>
-              <option value="ms">Bahasa Melayu</option>
-              <option value="nb">Norsk Bokmål</option>
-              <option value="nn">Norsk Nynorsk</option>
-              <option value="nl">Nederlands</option>
-              <option value="ph">Polski</option>
-              <option value="pt">Português</option>
-              <option value="ro">Română</option>
-              <option value="ru">Русский</option>
-              <option value="sk">Slovenčina</option>
-              <option value="sl">Slovenščina</option>
-              <option value="sr">Српски</option>
-              <option value="sv">Svenska</option>
-              <option value="th">ไทย</option>
-              <option value="tr">Türkçe</option>
-              <option value="uk">Українська</option>
-              <option value="vi">Tiếng Việt</option>
-              <option value="zs">中文(简体)</option>
-              <option value="zt">中文(繁體)</option>
-            </select>
+            <LangDropdown />
           </div>
           <div class="new-table heavyFont text-left self-start">{Lang.temperature}</div>
           <div class="radio-toolbar padding-top-5">
             <input type="radio" id="tempcelsius" name="temperature" value="celsius" onchange="setTemp()" />
-            <label class="disable-select" for="tempcelsius" />
-
+            <label class="disable-select" for="tempcelsius">{Lang.tempCelsius}</label>
             <input type="radio" id="tempfahrenheit" name="temperature" value="fahrenheit" onchange="setTemp()" />
-            <label class="disable-select" for="tempfahrenheit" />
+            <label class="disable-select" for="tempfahrenheit">{Lang.tempFahrenheit}</label>
           </div>
           <div class="new-table heavyFont padding-top-5 text-left self-start">{Lang.labelColorMain}</div>
           <div class="new-table">
@@ -102,7 +65,7 @@
               <option value="0.8">80%</option>
             </select>
           </div>
-          <div class="new-table heavyFont text-left">{Lang.settings}</div>
+          <div class="new-table heavyFont text-left">{Lang.labelName}</div>
           <div class="new-table text-left padding-top-5">
             <label class="switch"> <input id="nameSelectSetting" type="checkbox" /> <span class="slider round" /> </label>
           </div>
