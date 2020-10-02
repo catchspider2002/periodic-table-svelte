@@ -2,7 +2,6 @@
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
   import Nav from "./_Nav.svelte";
-  import Modal from "./_Modal.svelte";
   import Constants from "../../components/constants.js";
   import { onMount } from "svelte";
 
@@ -120,5 +119,4 @@
     </div>
   </div>
 </div>
-<Modal />
 <Footer />
