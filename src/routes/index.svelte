@@ -29,8 +29,8 @@
     margin: 0 0 1em 0;
   }
 
-  p {
-    margin: 1em auto;
+  div {
+    background-color: var(--body-bg-color);
   }
 
   @media (min-width: 480px) {
@@ -45,11 +45,11 @@
 </svelte:head>
 
 <Nav />
+<div>
+  <h1>Great success!</h1>
 
-<h1>Great success!</h1>
-
-<figure>
-  <img alt="Success Kid" src="successkid.jpg" />
-  <figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
+  <figure>
+    <img alt="Success Kid" src="successkid.jpg" />
+    <figcaption>Have fun with Sapper!</figcaption>
+  </figure>
+</div>

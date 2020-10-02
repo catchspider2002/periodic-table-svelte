@@ -2,10 +2,19 @@
   import Lang from "./locale.js";
   import Footer from "./_Footer.svelte";
   import Nav from "./_Nav.svelte";
+  import Modal from "./_Modal.svelte";
   import Constants from "../../components/constants.js";
   import { onMount } from "svelte";
 
   let List;
+  let website = "https://pt-svelte.netlify.app/";
+  let shortDesc =
+    "Interactive periodic table of the chemical elements in 39 languages - Includes properties, history, name origin, facts, applications, hazards, isotopes and more.";
+  let longDesc =
+    "Elements: The Periodic Table is a Progressive Web App (PWA) and provides comprehensive and useful information about the chemical elements all in one place. Know more about the properties, history, name origin, images, applications, hazards and electron shell diagram of each element.";
+  let keyWords =
+    "Periodic Table, chemical, elements, interactive, PWA, properties, history, name origin, images, applications, hazards, electron shell, diagram, chemistry, electron configuration, isotopes, information";
+  let socialImage = website + "images/icons/android-chrome-256x256.png";
 
   onMount(async () => {
     const module = await import("list.js");
@@ -63,6 +72,21 @@
   }
 </script>
 
+<svelte:head>
+  <meta name="description" content={shortDesc} />
+  <meta name="keywords" content={keyWords} />
+  <meta property="og:title" content="{Lang.list} - Periodic-Table.io" />
+  <meta property="og:description" content={longDesc} />
+  <meta property="og:image" content={socialImage} />
+  <link rel="canonical" href="{website}/{langValue}/list" />
+  <meta property="og:url" content="{website}/{langValue}/list" />
+  <meta name="twitter:title" content="{Lang.list} - Periodic-Table.io" />
+  <meta name="twitter:description" content={longDesc} />
+  <meta name="twitter:image" content={socialImage} />
+  <meta name="twitter:image:src" content={socialImage} />
+  <title>{Lang.list} - Periodic-Table.io</title>
+</svelte:head>
+
 <Nav />
 
 <div class="content-wrapper">
@@ -96,5 +120,5 @@
     </div>
   </div>
 </div>
-
+<Modal />
 <Footer />
