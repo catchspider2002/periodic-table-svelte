@@ -1,14 +1,14 @@
 <script>
   import { getContext } from "svelte";
   import Modal from "./_Modal.svelte";
-  import CloseButton from "../../components/CloseButton.svelte"
+  import CloseButton from "../../components/CloseButton.svelte";
   export let name;
 
   const { open } = getContext("simple-modal");
 
   const showModal = () => {
     open(
-        Modal,
+      Modal,
       { message: "It's a modal!" },
       {
         closeButton: CloseButton,
@@ -22,7 +22,7 @@
         // },
         styleContent: {
           color: "white",
-          padding: "0"
+          padding: "0",
         },
         styleCloseButton: {
           // color: "white",
@@ -38,6 +38,15 @@
 </script>
 
 <style>
+  a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding: 13px 15px;
+    margin: 0 0.25em;
+    gap: 0.75em;
+    font-size: 0.9em;
+    text-decoration: none;
+  }
 </style>
 
 <a on:click={showModal}>

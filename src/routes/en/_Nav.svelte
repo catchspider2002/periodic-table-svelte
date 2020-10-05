@@ -330,14 +330,19 @@
         {Lang.compare}</a>
     </li>
     <li>
-      <label for="drop-1" class="toggle">Tables +</label>
+      <label for="drop-1" class="toggle"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" stroke="currentColor" fill="currentColor">
+        <path
+          fill="none"
+          d="M195.75 15v482M15 195.75h482M75.25 15h361.5C470.128 15 497 41.872 497 75.25v361.5c0 33.378-26.872 60.25-60.25 60.25H75.25C41.872 497 15 470.128 15 436.75V75.25C15 41.872 41.872 15 75.25 15z"
+          stroke-width="30" />
+      </svg>Tables +</label>
       <a href="#a">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" stroke="currentColor" fill="currentColor">
           <path
             fill="none"
             d="M195.75 15v482M15 195.75h482M75.25 15h361.5C470.128 15 497 41.872 497 75.25v361.5c0 33.378-26.872 60.25-60.25 60.25H75.25C41.872 497 15 470.128 15 436.75V75.25C15 41.872 41.872 15 75.25 15z"
             stroke-width="30" />
-        </svg>Tables</a>
+        </svg>Tables +</a>
       <input type="checkbox" id="drop-1" />
       <ul>
         <li><a href="#a">Solubility Chart</a></li>
