@@ -1,8 +1,8 @@
 <script>
   import Lang from "./locale.js";
-  import Footer from "./_Footer.svelte";
+  // import Footer from "./_Footer.svelte";
   import Constants from "../../components/constants.js";
-  import Nav from "./_Nav.svelte";
+  // import Nav from "./_Nav.svelte";
   import { onMount } from "svelte";
 
   let langValue = Lang.lang;
@@ -87,7 +87,7 @@
   }
 </script>
 
-<Nav />
+<!-- <Nav /> -->
 <div class="content-wrapper">
   <div class="container">
     <div class="row">
@@ -328,4 +328,4 @@
   </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

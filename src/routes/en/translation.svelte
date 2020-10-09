@@ -1,9 +1,9 @@
-<script>
+<!-- <script>
   import Footer from "./_Footer.svelte";
   import Nav from "./_Nav.svelte";
-</script>
+</script> -->
 
-<Nav />
+<!-- <Nav /> -->
 <div class="content-wrapper">
   <div class="container">
     <div id="translationHeader" class="row text-upper aboutHeader text-center heavyFont" />
@@ -377,4 +377,4 @@
   </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

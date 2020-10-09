@@ -1,7 +1,7 @@
 <script>
   import Lang from "./locale.js";
-  import Footer from "./_Footer.svelte";
-  import Nav from "./_Nav.svelte";
+  // import Footer from "./_Footer.svelte";
+  // import Nav from "./_Nav.svelte";
   import Constants from "../../components/constants.js";
   import { onMount } from "svelte";
 
@@ -86,7 +86,7 @@
   <title>{Lang.list} - Periodic-Table.io</title>
 </svelte:head>
 
-<Nav />
+<!-- <Nav /> -->
 
 <div class="content-wrapper">
   <div class="container">
@@ -119,4 +119,4 @@
     </div>
   </div>
 </div>
-<Footer />
+<!-- <Footer /> -->

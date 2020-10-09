@@ -1,11 +1,11 @@
 <script>
   import Lang from "./locale.js";
-  import Footer from "./_Footer.svelte";
-  import Nav from "./_Nav.svelte";
+  // import Footer from "./_Footer.svelte";
+  // import Nav from "./_Nav.svelte";
 </script>
 
 
-<Nav />
+<!-- <Nav /> -->
 <div class="content-wrapper">
   <div class="container">
     <div class="flex flex-wrap">
@@ -61,4 +61,4 @@
   </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

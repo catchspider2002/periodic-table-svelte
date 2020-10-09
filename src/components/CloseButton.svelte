@@ -6,11 +6,12 @@
 <style>
 	button {
 		position: absolute;
-		top: 5px;
-		right: 10px;
+		top: -15px;
+		right: 5px;
 		color: white;
 		z-index: 5;
 		width: 40px;
+		font-size: 2em;
 		background-color:  transparent;
 	}
 </style>

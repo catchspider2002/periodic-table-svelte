@@ -11,10 +11,10 @@
 <script>
   export let posts;
   import Constants from "../../components/constants.js";
-  import Footer from "./_Footer.svelte";
+//   import Footer from "./_Footer.svelte";
   import Element from "../../components/Element.svelte";
   import Lang from "./locale.js";
-  import Nav from "./_Nav.svelte";
+//   import Nav from "./_Nav.svelte";
   import { onMount } from "svelte";
   let langValue = Lang.lang;
 
@@ -281,7 +281,7 @@
   <title>Periodic-table.io</title>
 </svelte:head>
 
-<Nav />
+<!-- <Nav /> -->
 
 <div id="headerwrap">
   <table id="ptable" class="table square margin-bottom-20">
@@ -509,4 +509,4 @@
   </table>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

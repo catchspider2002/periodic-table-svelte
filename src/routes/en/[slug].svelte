@@ -17,9 +17,9 @@
   export let post;
   import Constants from "../../components/constants.js";
   import Electron from "../../components/Electron.svelte";
-  import Nav from "./_Nav.svelte";
+//   import Nav from "./_Nav.svelte";
   //   import NavBar from "./NavBar.svelte";
-  import Footer from "./_Footer.svelte";
+//   import Footer from "./_Footer.svelte";
   import Lang from "./locale.js";
   import { onMount } from "svelte";
   import { beforeUpdate, afterUpdate } from "svelte";
@@ -190,7 +190,7 @@
   <title>{post.title}</title>
 </svelte:head>
 
-<Nav />
+<!-- <Nav /> -->
 <h1>{post.title}</h1>
 
 <!-- <Nav /> -->
@@ -495,4 +495,4 @@
   </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import Lang from "./en/locale.js";
   import Nav from "./en/_Nav.svelte";
   let langValue = Lang.lang;
@@ -52,4 +52,4 @@
     <img alt="Success Kid" src="successkid.jpg" />
     <figcaption>Have fun with Sapper!</figcaption>
   </figure>
-</div>
+</div> -->

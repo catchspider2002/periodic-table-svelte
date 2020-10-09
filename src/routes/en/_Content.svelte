@@ -9,7 +9,7 @@
   const showModal = () => {
     open(
       Modal,
-      { message: "It's a modal!" },
+      { message: "" },
       {
         closeButton: CloseButton,
         // styleBg: {
@@ -46,6 +46,7 @@
     gap: 0.75em;
     font-size: 0.9em;
     text-decoration: none;
+    cursor: pointer;
   }
 </style>
 

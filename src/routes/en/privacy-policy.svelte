@@ -1,10 +1,10 @@
 <script>
   import Lang from "./locale.js";
-  import Footer from "./_Footer.svelte";
-  import Nav from "./_Nav.svelte";
+  // import Footer from "./_Footer.svelte";
+  // import Nav from "./_Nav.svelte";
 </script>
 
-<Nav/>
+<!-- <Nav/> -->
 <div class="content-wrapper">
   <div class="container">
     <div class="row text-upper aboutHeader text-center heavyFont">{Lang.privacy}</div>
@@ -12,4 +12,4 @@
   </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

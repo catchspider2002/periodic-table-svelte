@@ -1,14 +1,14 @@
 <script>
   import Lang from "./locale.js";
-  import Footer from "./_Footer.svelte";
-  import Nav from "./_Nav.svelte";
+  // import Footer from "./_Footer.svelte";
+  // import Nav from "./_Nav.svelte";
 
   function id(text) {
     return document.getElementById(text);
   }
 </script>
 
-<Nav />
+<!-- <Nav /> -->
 
 <div class="content-wrapper">
   <div class="container">
@@ -141,4 +141,4 @@
   </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

@@ -1,5 +1,7 @@
 <script>
   //   import Nav from "../components/Nav_old_delte.svelte";
+  import Nav from "./_Nav.svelte";
+  import Footer from "./_Footer.svelte";
   import { onMount } from "svelte";
 
   export let segment;
@@ -71,7 +73,60 @@
       localStorage.setItem("defaultMargin", "1");
       defaultMargin = "1";
     }
+
+    setColor("253, 58, 74");
   });
+
+
+  
+
+function rgbToHex(rgb) {
+  var r = rgb.split(",")[0];
+  var g = rgb.split(",")[1];
+  var b = rgb.split(",")[2];
+
+  var rgbNew = b | (g << 8) | (r << 16);
+  return "#" + (0x1000000 + rgbNew).toString(16).slice(1);
+}
+
+function colorLuminance(hex, lum) {
+
+	// validate hex string
+	hex = String(hex).replace(/[^0-9a-f]/gi, '');
+	if (hex.length < 6) {
+		hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+	}
+	lum = lum || 0;
+
+	// convert to decimal and change luminosity
+	var rgb = "#", c, i;
+	for (i = 0; i < 3; i++) {
+		c = parseInt(hex.substr(i*2,2), 16);
+		c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+		rgb += ("00"+c).substr(c.length);
+	}
+
+	return rgb;
+}
+
+function setColor(color) {
+  var hexValue = rgbToHex(color);
+var root = document.documentElement;
+
+  var darkerColor50 = colorLuminance(hexValue, -0.5);
+  var darkerColor0 = colorLuminance(hexValue, -0.6);
+
+  var metaThemeColor = document.querySelector("meta[name=theme-color]");
+  metaThemeColor.setAttribute("content", darkerColor50);
+
+  var metaTileColor = document.querySelector("meta[name=msapplication-TileColor]");
+  metaTileColor.setAttribute("content", hexValue);
+  
+  root.style.setProperty("--theme-color", color);
+  root.style.setProperty("--darker-color-50", darkerColor50);
+  root.style.setProperty("--darker-color-0", darkerColor0);
+  console.log("Darker color set")
+}
 </script>
 
 <style>
@@ -85,8 +140,10 @@
   }
 </style>
 
+<Nav />
 <!-- <Nav {segment} /> -->
 
-<main data-theme="light">
+<main data-theme="dark">
   <slot />
 </main>
+<Footer/>

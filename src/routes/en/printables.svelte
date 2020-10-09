@@ -1,7 +1,7 @@
 <script>
   import Lang from "./locale.js";
-  import Footer from "./_Footer.svelte";
-  import Nav from "./_Nav.svelte";
+  // import Footer from "./_Footer.svelte";
+  // import Nav from "./_Nav.svelte";
   import PrintableFile from "../../components/PrintableFile.svelte";
 </script>
 
@@ -10,7 +10,7 @@
   </script>
 </svelte:head>
 
-<Nav />
+<!-- <Nav /> -->
 <div class="content-wrapper">
   <div class="container">
     <div id="printablesHeader" class="row text-upper aboutHeader text-center heavyFont" />
@@ -69,4 +69,4 @@
   </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

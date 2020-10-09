@@ -32,9 +32,10 @@ a {
 }
 
 :root {
-  --theme-color: 0, 120, 215;
-  --darker-color-50: #003c6c;
-  --darker-color-0: #003056;
+  /* --theme-color: 0, 120, 215; */
+  --theme-color: 253, 58, 74;
+  /* --darker-color-50: rgb(0, 60, 108); */
+  /* --darker-color-0: #003056; */
   --body-bg-color: rgb(235, 235, 235);
   --card-bg-color: rgb(245, 245, 245);
   --text-color: 0, 0, 0;
@@ -904,8 +905,8 @@ button,
 .modal-header {
   /* background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.35)),
 	  linear-gradient(to right, rgb(var(--theme-color)), rgb(var(--theme-color))); */
-  /* background-color: var(--darker-color-50); */
-  background-color: green;
+  background-color: var(--darker-color-50);
+  /* background-color: green; */
 }
 
 /* .modal {
@@ -940,7 +941,7 @@ button,
   position: relative;
   width: auto;
   margin: 10px;
-  background-color: red;
+  /* background-color: red; */
   z-index: 4;
 }
 
@@ -2107,7 +2108,7 @@ blockquote,
   padding: 0.5em 0;
   visibility: hidden;
   opacity: 0;
-  background-color: var(--darker-color-0);
+  background-color: var(--darker-color-50);
   width: 100%;
   min-width: 12rem;
   position: absolute;
