@@ -11,7 +11,7 @@
     <div class="flex flex-wrap">
       <div class="margin-bottom-20">
         <div id="lightTeeHeader" class="text-upper text-center heavyFont aboutHeader">T-shirt ({Lang.themeLight})</div>
-        <div class="padding-10"><img class="table teeImage" alt="Periodic table t-shirt in light background" src="images/LightTee.png" /></div>
+        <div class="padding-10"><img class="table teeImage" alt="Periodic table t-shirt in light background" src="images/store/LightTee.png" /></div>
         <div class="text-center">
           <div class="teeLink"><a class="underlineLink" href="https://www.amazon.com/dp/B07RNSV37Z">Amazon (US)</a></div>
           <div class="teeLink"><a class="underlineLink" href="https://www.amazon.co.uk/dp/B07RNF8Q39">Amazon (UK)</a></div>
@@ -35,7 +35,7 @@
       </div>
       <div class="margin-bottom-20">
         <div id="darkTeeHeader" class="text-upper text-center heavyFont aboutHeader">T-shirt ({Lang.themeDark})</div>
-        <div class="padding-10"><img class="table teeImage" alt="Periodic table t-shirt in dark background" src="images/DarkTee.png" /></div>
+        <div class="padding-10"><img class="table teeImage" alt="Periodic table t-shirt in dark background" src="images/store/DarkTee.png" /></div>
         <div class="text-center">
           <div class="teeLink"><a class="underlineLink" href="https://www.amazon.com/dp/B07RTCVS2Q">Amazon (US)</a></div>
           <div class="teeLink"><a class="underlineLink" href="https://www.amazon.co.uk/dp/B07RP922V4">Amazon (UK)</a></div>

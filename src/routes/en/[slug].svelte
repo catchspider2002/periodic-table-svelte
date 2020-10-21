@@ -17,9 +17,9 @@
   export let post;
   import Constants from "../../components/constants.js";
   import Electron from "../../components/Electron.svelte";
-//   import Nav from "./_Nav.svelte";
+  //   import Nav from "./_Nav.svelte";
   //   import NavBar from "./NavBar.svelte";
-//   import Footer from "./_Footer.svelte";
+  //   import Footer from "./_Footer.svelte";
   import Lang from "./locale.js";
   import { onMount } from "svelte";
   import { beforeUpdate, afterUpdate } from "svelte";
@@ -190,15 +190,15 @@
   <title>{post.title}</title>
 </svelte:head>
 
-<!-- <Nav /> -->
-<h1>{post.title}</h1>
-
-<!-- <Nav /> -->
-
 <div class="content">
   <div class="content-wrapper">
     <div class="container">
       <div class="masonry">
+        <div id="elementName" class="box-content masonry-col text-center">
+          <div class="line-height-2">
+            <h1>{post.title}</h1>
+          </div>
+        </div>
         <div class="flex-container row">
           <div class="flex-cell">
             <div id="firstSquare" class="flex-item masonry-col flex flex-col">
@@ -486,8 +486,9 @@
             </g>
           </svg>
           <div id="elementNav" class="row text-center">
-            <a href="#a" class="underlineLink" id="previousElement">{previousElement}</a>&nbsp;&nbsp;←&nbsp; <span
-              id="currentElement">{element.sym}</span>&nbsp;&nbsp;→&nbsp; <a class="underlineLink" id="nextElement">{nextElement}</a>
+            <a href="#a" class="underlineLink" id="previousElement">{previousElement}</a>&nbsp;&nbsp;←&nbsp;
+            <span id="currentElement">{element.sym}</span>&nbsp;&nbsp;→&nbsp;
+            <a class="underlineLink" id="nextElement">{nextElement}</a>
           </div>
         </div>
       </div>
