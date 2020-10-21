@@ -17,11 +17,13 @@
 
 <div class="flex flex-col font-size-15 overflow-auto">
   <h1>{title}</h1>
-  <img class="py-4 image" draggable="false" src="images/{image}.png" alt={title} />
+  <img class="py-4 image" draggable="false" src="images/printables/{image}.png" alt={title} />
   <div class="py-4">{description}</div>
   <div class="pt-2 font-weight-600">{supported}</div>
   <div class="py-4">{languages}</div>
-  <div class="py-2">⭐⭐⭐⭐⭐ ({rating})</div>
+  {#if rating > 0}
+    <div class="py-2">⭐⭐⭐⭐⭐ ({rating} rating{rating > 1 ? 's' : ''})</div>
+  {/if}
   <div class="py-4">
     <a href={link} class="mx-auto downloadButton justify-center content-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512" stroke="currentColor" fill="currentColor">
